@@ -3,50 +3,49 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: background_and_progress.aux
 The style file: agsm.bst
 Database file #1: background_bibliography.bib
-Warning--I didn't find a database entry for "Hoffman1999"
 Warning--there's a number but no volume in Erhan2009
 Warning--there's a number but no volume in Patel2008
 Warning--there's a number but no volume in Tzeng2005
 Warning--there's a number but no volume in Weinberger2004
-You've used 72 entries,
+You've used 74 entries,
             2909 wiz_defined-function locations,
-            1104 strings with 18105 characters,
-and the built_in function-call counts, 324680 in all, are:
-= -- 52808
-> -- 4611
+            1112 strings with 18333 characters,
+and the built_in function-call counts, 330929 in all, are:
+= -- 53803
+> -- 4705
 < -- 0
-+ -- 25322
-- -- 1407
-* -- 28279
-:= -- 64732
-add.period$ -- 72
-call.type$ -- 72
-change.case$ -- 1007
-chr.to.int$ -- 69
-cite$ -- 76
-duplicate$ -- 1230
-empty$ -- 2391
-format.name$ -- 1654
-if$ -- 58402
++ -- 25790
+- -- 1435
+* -- 28801
+:= -- 66035
+add.period$ -- 74
+call.type$ -- 74
+change.case$ -- 1035
+chr.to.int$ -- 71
+cite$ -- 78
+duplicate$ -- 1260
+empty$ -- 2443
+format.name$ -- 1687
+if$ -- 59512
 int.to.chr$ -- 8
 int.to.str$ -- 0
-missing$ -- 66
-newline$ -- 248
-num.names$ -- 755
-pop$ -- 349
+missing$ -- 68
+newline$ -- 254
+num.names$ -- 776
+pop$ -- 358
 preamble$ -- 1
-purify$ -- 1080
+purify$ -- 1110
 quote$ -- 0
-skip$ -- 1115
+skip$ -- 1143
 stack$ -- 0
-substring$ -- 74771
-swap$ -- 281
-text.length$ -- 1008
+substring$ -- 76146
+swap$ -- 285
+text.length$ -- 1036
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 284
+type$ -- 292
 warning$ -- 4
-while$ -- 1625
+while$ -- 1667
 width$ -- 0
-write$ -- 953
-(There were 5 warnings)
+write$ -- 978
+(There were 4 warnings)

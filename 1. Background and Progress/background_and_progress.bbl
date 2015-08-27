@@ -1,5 +1,10 @@
 \begin{thebibliography}{xx}
 
+\harvarditem[Adams et~al.]{Adams, Gorman \harvardand\ Perlich}{2015}{Adams2015}
+Adams, R., Gorman, K. \harvardand\ Perlich, C.  \harvardyearleft
+  2015\harvardyearright , `{Working With Data and Machine Learning in
+  Advertising}', {\em Talking Machines Podcasts} {\bf 13}.
+
 \harvarditem[Ankerst et~al.]{Ankerst, Elsen, Ester \harvardand\
   Kriegel}{1999}{Ankerst1999}
 Ankerst, M., Elsen, C., Ester, M. \harvardand\ Kriegel, H.-P.  \harvardyearleft
@@ -182,6 +187,10 @@ Hinton, G.~E., Srivastava, N., Krizhevsky, A., Sutskever, I. \harvardand\
 \harvarditem{Hinton \harvardand\ Roweis}{2002}{Hinton2002}
 Hinton, G. \harvardand\ Roweis, S.  \harvardyearleft 2002\harvardyearright ,
   `{Stochastic Neighbor Embedding}'.
+
+\harvarditem{Hoffman}{1999}{Hoffman1999}
+Hoffman, P.  \harvardyearleft 1999\harvardyearright , `{Table Visualization: A
+  formal model and its applications}'.
 
 \harvarditem{Hotelling}{1933}{Hotelling33}
 Hotelling, H.  \harvardyearleft 1933\harvardyearright , `{Analysis of a complex

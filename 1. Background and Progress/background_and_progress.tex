@@ -99,7 +99,7 @@ Produce a more advanced system that allows for interrogation
 	This project contributes a new tool for academic researchers that enables them to explore the changes occurring within their neural networks at every stage of training. The first tool provides a rough-and-ready approach to \textit{looking inside the black box} and quickly making assessments whether your network is learning or not. The second tool allows researchers who want to have a closer look into their data the ability to interact with the outputs of their neural network by plotting the activations of the network using dimensionality reduction techniques and correlation mapping. This allows for a more meaningful understanding of the matrix data that is output, showing how certain input data-points get misclassified, what types of representations the networks are learning, and whether the network is learning anything useful, or simply just rotating the data (a common problem).
 	
 	\subsection{Report Outline}
-	\textbf{Chapter 2:} Presents a short introduction to Neural Networks and Visualisation before exploring in further depth how the two fields have been combined in the past.
+	\textbf{Chapter 2:} Presents a short introduction to Neural Networks and Visualisation before exploring in further depth how the two fields have been combined and looks at some important issues to consider.
 	\par
 	\textbf{Chapter 3:} Outlines 
 	\par
@@ -112,9 +112,10 @@ Produce a more advanced system that allows for interrogation
 	
 \clearpage
 
-\section{Background and Related Work}
-	\subsection{Artificial Neural Networks (ANNs)}	
-		\textbf{Background} 
+\section{Identifying the Problem}
+
+
+	\subsection{Understanding Neural Networks}
 		\par
 			In order to understand Neural Networks lets first consider the human brain, a highly advanced information processing machine composed of around ten billion neurons and their connections. Artificial Neural Networks (ANNs) are a class of machine learning algorithms that seek to adopt some of the patterns within this advanced machinery, using a combination of computational and statistical methods to automate information extraction from data and allow computers to learn in a way that mimics human learning.
 			\par 
@@ -155,22 +156,32 @@ Produce a more advanced system that allows for interrogation
 
 \textbf{Layers}
 
+		\begin{figure}[H]
+    			\centering	
+    			{{\includegraphics[width=0.45\textwidth]
+    				{img/convolutional_network.png} 
+    			}}%
+    			\caption{Convolutional Filters}%
+    			\label{fig:convfilters}
+		\end{figure}		
+
 		\par 
 		There are a number of different types of layers that can be combined in a neural network: in a \textit{fully connected layer} the neurons receive an input value from every neuron in the previous layer. In a \textit{locally connected layer} the neurons are indexed spatially with inputs coming only from those nearby, and in a \textit{convolutional layer} a number of filters are applied to create a convolution. 
 		\par
 		The convolution of an image is produced by applying a filter upon the input image. The filter is a $k x k$ weight matrix such that $ k $ is an odd number to ensure the matrix has a true centre. The convolved image is produced pixel at a time by computing the dot product of the filter and the pixels below it, the central pixel of which is updated. A convolution is therefore produced by scanning the filter across the input pixel space until every pixel is replaced by a pixel that is some function of its filter bound neighbours. Deep successions of convolutions encode images in ways that make them invariable to translation and deformation. This is critical for classification \cite{Bruna2012}.
-\par 
+\\\
+\\\
 
 \textbf{Neurons}
 		
 		\begin{figure}[H]
     			\centering	
-    			\subfloat[Multipolar Biological Neuron]												{{\includegraphics[width=0.25\textwidth]
+    			\subfloat[Multipolar Biological Neuron]												{{\includegraphics[width=0.3\textwidth]
     				{img/neuron_bio} 
     			}}%
     			\qquad
     			\subfloat[Artificial Neuron Model]
-    			{{\includegraphics[width=0.25\textwidth]
+    			{{\includegraphics[width=0.3\textwidth]
     				{img/neuron_model} 
     			}}%
     			\caption{}%
@@ -178,9 +189,9 @@ Produce a more advanced system that allows for interrogation
 		\end{figure}
 				
 		As mentioned previously, artificial neural networks are modelled on the human brain. They take influence from the \textit{multipolar biological neuron}. The neuron receives multiple electric charges from its neighbours through the dendrites. This then triggers a single electric charge to a different set of neighbouring neurons through its axon terminals. Artificial neurons perform effectively the same task and compute functions that take in multi-dimensional input but output a mono-dimensional result.
-				\\\
+\\\
 
-		There are a number of different neurons used within the layers of an artificial neural network:
+There are a number of different neurons used within the layers of an artificial neural network:
 		\\\
 		
 		\textbf{Binary Threshold Neuron} 
@@ -231,27 +242,24 @@ Produce a more advanced system that allows for interrogation
 		$$		
 		
 		The rectified linear neuron is a hybrid function. It is more efficient to compute that the sigmoid neuron and is partially differentiable, thus making it suitable for gradient descent. The compromise here is the cost of sophistication of the result. The neuron introduces a non-linearity with its angular point, a smooth approximation of which is the softplus $f(x) = log(1 + e^{x}))$.
-		
-\textbf{Architecture}
-		The standard deep neural network architecture is the feedforward network (FFNN) explained more fully previously. Variations exist; however such as recurrent neural networks (RNNs), convolutional neural networks (CNNs) and a few others. 
-				
-\textbf{Convolutional Neural Networks:}
-		are typically used for image classification due to their ability to successfully capture \textit{local} structure. The first layers are convolutional and produce a featurized representation of an image such as those that emphasize edges or compute gradients of hue and value. Successive layers are more standard and undergo a smiliar non-linear transformation. The output is usually a vector of probabilities spread across different possible classifications.
-		\\\
-		\textbf{Design Space}
-		In a typical machine learning workflow, including working with ANNs, practitioners iteratively develop algorithms by refining choices in areas such as feature selection, sub-algorithm selection, parameter tuning and more \cite{Patel2008}. This is usually done through a trial and error approach that is perhaps similar to hill-climbing in the model space. This is highly unscientific, with only a few outputs providing direction such as error.
-		\par 
-		The most challenging and time-consuming part of training a neural network lies in selecting the correct parameters, of which there are many, and each affects the network in an almost unknown capacity. Some examples are:
-				
+\\\
+\\\
+
+\textbf{Design Space}
+\par
+		In a typical machine learning workflow, including working with ANNs, practitioners iteratively develop algorithms by refining choices in areas such as feature selection, sub-algorithm selection, parameter tuning and more \cite{Patel2008}. This is usually done through a trial and error approach that is perhaps similar to hill-climbing in the model space and can lead to locally minimal results. This is generally considered to be unsatisfactory due to the small number of outputs that a researcher may be following as a guideline - such as error.
+						
 		\begin{figure}[H]
     			\centering	
 			{{\includegraphics[width=0.3\textwidth]
     				{img/gradient_descent.png} 
     			}}%
-    			\caption{Gradient Descent}%
+    			\caption{Hill Climbing in the parameter space (Gradient Descent)}%
     			\label{fig:GradDesc}
-		\end{figure}		
-		 		
+		\end{figure}	
+		
+		\par 
+		The most challenging and time-consuming part of training a neural network lies in selecting the correct parameters, of which there are many, and each affects the network in an almost unknown capacity. Some examples are:
 		\par
 		\textbf{Size of Filters:} if the filter is too small features will be too coarse, however if the filter is too large the complexity of a model increases significantly with little benefit.
 		\par
@@ -264,17 +272,7 @@ Produce a more advanced system that allows for interrogation
 		\textbf{Input and Output Data Encodings:} different vector encodings change the way the network learns. Images for example with a height, width and three colours per pixel are compressed into a one-dimensional vector as an effective input encoding.
 		\par  		
 		\textbf{Error Space, or Bound:} changes how the network perceives error, and thus fundamentally effects what it learns during the backpropogation optimisation period.
-		\par
-		
-		\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/erhan_pretraining_versus.png} 
-    			}}%
-    			\caption{Error plot with and without pretraining}%
-    			\label{fig:Error}
-		\end{figure}	
-		 		
+		\par		 		
 		\textbf{Initialization of Weights:} can also alter how a model learns. There are a number of different possible approaches to this: such as uniformly, randomly, as a gaussian, unsupervised pre-training and more.
 		
 		\par 
@@ -285,43 +283,93 @@ Produce a more advanced system that allows for interrogation
 		\textbf{Optimization Parameters:} such as step-size, or learning rate, regularisation, mini-batch sampling all need to be tuned for maximum accuracy and convergence speed. While there are common algorithms that help choose these parameters, such as AgaGrad \cite{Duchi2011}, manual tuning is often still required, and is difficult to get right.
 		\par
 		\textbf{Momentum Co-efficient:} adds a fraction of the previous weight update to the current one, and is used to prevent the system from converging to a local minimum or saddle point, and increase the speed at which it converges. Too high and risk of overshooting the minimum, and too low the system might still hit a local minima.
+\\\
+	\subsection{Black Box Problem}
+		While there have been a number of improvements to neural networks over the years (such as the development of dropout, or deeper architecture) they remain to be considered by many as a black box algorithm, especially in comparison to some other better studied and less complex machine learning techniques such as support vector machines or logistic regression. Indeed many popular machine learning competitions are still won by those better understood algorithms \cite{Adams2015}.
+		\par 
+		There is still no clear understanding of why they perform so well or why certain combinations of internal weights and connections enable highly complex tasks, such as computer vision, to be performed. It is due to this lack of understanding that the development of new models falls largely upon a `greedy' trail and error approach to tuning the network parameters. This is unsatisfactorily unscientific, using experience and intuition as the primary guiding factors - making insights hard to replicate.
 		\par
-		
-		\begin{figure}[H]
-    			\centering	
-    			\subfloat[Without Dropout]							{{\includegraphics[width=0.25\textwidth]
-    				{img/without_dropout.png} 
-    			}}%
-    			\qquad
-    			\subfloat[With Dropout]
-    			{{\includegraphics[width=0.25\textwidth]
-    				{img/with_dropout.png} 
-    			}}%
-    			\caption{}%
-    			\label{fig:Dropout}
-		\end{figure}
-		
-\textbf{Problem}	
-		While there have been a number of improvements to neural networks over the years, such as the development of dropout, they remain to be considered as black box, especially in comparison to some other better studied and less complex machine learning techniques such as support vector machines or logistic regression. There is still no clear understanding of why they perform so well or why certain combinations of internal weights and connections enable highly complex tasks, such as computer vision, to be performed. It is as result of this lack of understanding that the development of new models falls largely upon a `greedy' trail and error approach. This is unsatisfactorily unscientific, using experience and intuition as the primary guiding factors.
-		\par
-		There are a number of challenges that arise in attempting to change this way of working; firstly, these networks are composed of many functional components, the values of which as individuals and as a whole are not readily understood. In addition, each component of a network may have dozens of hyper-parameters linked to it, every one of which needs to be tuned to attain optimal performance. Finally, exacerbating these issues is that literature hasn't formalised methods for development or discussion, so even experts can only rely on others anecdotal results to guide design.
+		There are a number of challenges that arise in attempting to change this way of working; firstly, these networks are composed of many functional components, the values of which as individuals and as a whole are not readily understood. In addition, each component of a network may have dozens of hyper-parameters linked to it, every one of which needs to be tuned to attain optimal performance. Finally, exacerbating these issues is that literature hasn't formalised methods for development or discussion, so even experts can only rely on others anecdotal results to guide network design.
 		\par 
 		In real terms, this means that designing and debugging deep neural networks is error-prone and time-intensive. 
 		\par 
-		It is hoped that alternative work flows may provide some deeper insight. \cite{Jarrett2009} for example uses a number of pre-evaluated models compared against number of datasets to make more informed decisions, this however doesn't leave room for new discovery. \cite{Bergstra2013} uses a less human involved approach by using Bayesian statistics to automate the search of the parameter space, this is however computationally demanding and doesn't always provide an optimal solution. Another area is to support decision making with visualisation allowing for the constant evaluation of clear representations to help researchers better understand the trajectory they are taking their models in as they go through the standard trail and of error tweaking different parameters.
-		\par
-		Visualisation is not uncommon, and similar projects have been undertaken across a variety of areas within Machine Learning, in the visualisations of the naive-Bayesian network \cite{Becker2001}, decision trees \cite{Ankerst1999}, Support Vector Machines \cite{Caragea2001} and Hidden Markov Models \cite{Dai2008}. Studies have shown that integrating such tools into the learning work flow can in fact produce better results than automated techniques alone \cite{Ware2002}.
-
-\subsection{Visualisation}
-
-%\subsubsection{Overview}
-\textbf{Overview}
-
-		Visualising quantitative information typically involves displaying measured quantities, or data, by means of the combined use of points, lines, a coordinate system, numbers, symbols, words, shading, and colour. These visual forms are more rapidly understood and are easier to critique than the information underlying them \cite{DeFanti1989}, \cite{McCormick1987}, \cite{Tufte2001}.
-		\par
-		In a numerical format vast quantities of data can be tedious to process, and often little can be gleaned from such complex models. Visual data on the other hand communicates to the highly developed visual pattern-recognition capabilities of humans. A majority of our brain's activity deals with the processing and analysis visual images. Images are pre-attentive and processed before text. Several empirical studies show that visual representations are superior to verbal or sequential representations across a number of different tasks; illustrate relations, identify patterns, to present overview and details, to support problem solving and to communicate different knowledge types \cite{Burkhard2004}. As a species we are far better at recognising regularities, anomalies, and trends in images rather than in long lists of numbers \cite{Ware2010}. Consider how difficult is may be to observe both global and local patterns in a list of numbers, than across some standard visualisation such as a graph.
+		It is hoped that alternative work flows may provide some deeper insight. \cite{Jarrett2009} for example uses a number of pre-evaluated models compared against number of datasets to make more informed decisions, this however doesn't leave room for new discovery. \cite{Bergstra2013} uses a less human involved approach by using Bayesian statistics to automate the search of the parameter space, this is however computationally demanding and doesn't always provide an optimal solution. 
 		\par 
-		For data mining to be effective, it is important to include the human in the data exploration process and combine the flexibility, creativity and general knowledge of the human with the enormous storage capacity and computation power of computers. Visual data mining techniques have proven to be of high value in exploratory data analysis and they have high potential for exploring large datasets. Visual data exploration is especially useful when little is known about the data and the exploration goals are vague. Since the user is directly involved in the exploration process, shifting and adjusting the exploration goals can be automatically done if necessary \cite{Keim2002}.
+		A further area is to support decision making with visualisation allowing for the constant evaluation of networks to help researchers better understand the trajectory they are taking their models in as they go through the standard trail and of error tweaking different parameters. This is the approach that is being explored in this project. 
+		\par
+	It's important to stress here that this is not a novel idea, and similar projects have been undertaken across a variety of areas within Machine Learning, in the visualisations of the naive-Bayesian network \cite{Becker2001}, decision trees \cite{Ankerst1999}, Support Vector Machines \cite{Caragea2001} and Hidden Markov Models \cite{Dai2008}. Studies have shown that integrating such tools into the learning work flow can in fact produce better results than automated techniques alone \cite{Ware2002}.
+
+\section{Searching for a Solution}
+	\subsection{Human \& Computer Augmentation}
+
+\textbf{Tackling Hard, Complex Problems in the Real World}
+
+When former world champion chess grandmaster Garry Kasparov was beaten by IBM’s deep blue in February 1996, the headline was that Artificial Intelligence had finally surpassed human intellect. However following that loss Kasparov founded a competition known as freestyle , or advanced, chess - here human chess players use software to augment their play. The results were significant: humans who teamed up with machines could beat any of the autonomous machines. So while AI is often heralded, it's important to recognise that humans still bring important qualities to the intelligence scene. 
+
+Today far more sophisticated AI algorithms have been developed, and often included in the list of best are Deep Neural Networks. However, as mentioned earlier there is a problem - to design the networks to they perform as expected is incredibly difficult and there is a great challenge in understanding what these networks are actually doing. 
+
+Where companies like PayPal and Palantir use machines to process data and humans to analyse it - often through visualisations - to perform complex fraud detection tasks, perhaps by using the computer as a lever to analyse large datasets (the output of neural networks) 
+
+
+		\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.3\textwidth]
+    				{img/palantir_01.png} 
+    			}}%
+    			\caption{Palantir Screenshot Visualisation}%
+    		\label{fig:Palantir}
+		\end{figure}
+
+
+"The use of computer-supported, interactive, visual representations of abstract data to amplify cognition" \cite{card1999}
+
+we can develop visualisations that allow us to work with the computers data handling capabilities and human pattern recognition and understanding to understand neural networks better. 
+
+Visualisation can help us notice things that were previously hidden. Even when data volumes are vast, patterns can be identified quickly and with relative ease. Visualisations convey information in a way that makes it simple to share ideas with others as well -  it lets people say “Do you see what I see?” And it can even help answer questions like “What would happen if we made an adjustment to that area?”
+
+
+\textbf{Active Vision}
+		
+		\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.3\textwidth]
+    				{img/brain_bandwidth.png} 
+    			}}%
+    			\caption{Tor Nørretranders Brain Bandwidth}%
+    		\label{fig:TufteExcellence}
+		\end{figure}
+
+ 		There has been a small revolution in our understanding of human perception, sometimes called `active vision' \cite{Ware2010}. Active vision means that we should think about graphic designs as more than pretty images, but as cognitive tools that enhance and extend our brains. Diagrams, maps, web pages, information graphics, visual instructions, and more regularly help us to solve problems through a process of visual thinking, using the enormous proportion - almost half - of the human brain that is devoted to the visual sense.  
+	
+		\par 
+		Danish Physicist Tor Nørretranders discusses the ``bandwidth of our senses ” in computer terminology to give an idea of the power of this visual system. In the diagram it's important to observe the comparison to the small white box at the corner which is \textit{0.7\%} of total power and is what we are aware off when all this processing is happening \cite{Tufte2012}.		
+		\par 
+		\textit{``We are all cognitive cyborgs in this Internet age in the sense that we rely heavily on cognitive tools to amplify our mental abilities. Visual thinking tools are especially important because they harness the visual pattern finding part of the brain."} \cite{Ware2010}.
+\\\
+
+		\par 
+		When producing data visualisations it is important to think about the particular details of design. What does it take to make a graphic symbol that can be found rapidly? How can something be highlighted? The problem for the designer is to ensure all visual queries can be effectively and rapidly served \cite{Keim2002}. 
+
+	\subsection{Visualisation Theory}
+	\textbf{Overview}
+\par
+		Visualising quantitative information, such as the data produced by neural networks, typically involves displaying measured quantities, or data, by means of the combined use of points, lines, a coordinate system, numbers, symbols, words, shading, and colour. These visual forms are more rapidly understood and are easier to critique than the information underlying them \cite{DeFanti1989}, \cite{McCormick1987}, \cite{Tufte2001}.
+		\par
+		In a numerical format vast quantities of data can be tedious to process, and often little understanding can be gained from such complex models. Visual data on the other hand communicates to the highly developed visual pattern-recognition capabilities of humans. Indeed, a majority of our brain's activity deals with the processing and analysis of visual images. Images are pre-attentive and are processed before text in the human brain. Several empirical studies show that visual representations are superior to verbal or sequential representations across a number of different tasks; illustrate relations, identify patterns, to present overview and details, to support problem solving and to communicate different knowledge types \cite{Burkhard2004}. As a species we are far better at recognising regularities, anomalies, and trends in images rather than in long lists of numbers \cite{Ware2010}. Consider how difficult is may be to observe both global and local patterns in a list of numbers, in comparison to the relative ease when presented in a standard visualisation model such as a graph.
+	  		 
+  		\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.3\textwidth]
+    				{img/ware_popout_channels.png} 
+    			}}%
+    			\caption{Ware's "Things that pop-out"}%
+    		\label{fig:Ware Pop-Out}
+		\end{figure}
+  		 		
+		\par 
+		For data mining to be effective, it is important to include the human in the data exploration process and combine the flexibility, creativity and general knowledge of the human with the enormous storage capacity and computation power of computers. Visual data mining techniques have proven to be of high value in exploratory data analysis and they have high potential for exploring large datasets.
+		\par 
+		Visual data exploration is especially useful when little is known about the data and the exploration goals are vague - such as when attempting to understand the inner workings of a neural net. Since the user is directly involved in looking at the visualisation, shifting and adjusting the exploration goals of the human eye can be automatically \cite{Keim2002}.
 		\par 
 		The canonical example of the usefulness of visualisation lies in the Anscombes quartet, where the four sets of numbers in the quartet have many identical summary statistics - mean of x values, mean of y values, variances, correlations and regression lines - but vary wildly when graphed \cite{Shoresh2011}:
 
@@ -332,50 +380,27 @@ Produce a more advanced system that allows for interrogation
     			}}%
     			\caption{(a) The four sets of numbers that form Anscombe's quartet -  (b) The highly distinctive graphs that result from plotting the data in a.}%
 		\end{figure}
-		
-		\par 
-		Your message should be represented clearly by taking advantage of the strengths of visual perception, while avoiding all its weakness. At the same time, the representation should match the human thought process, augmenting where necessary to cover up limitations \cite{Tufte2012}.
-		\par 
-		
-%\subsubsection{Tufte: what makes a good visualisation}
-\textbf{Tufte: what makes a good visualisation}
-		
-		Edward Tufte, a founding figure in laying out the core principles of data visualisation, provides us with a set of basic commandments \cite{Tufte2001}:
-		
-		\begin{itemize}
-			\item show the data
-			\item induce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else
-			\item avoid distorting what the data has to say
-			\item present many numbers in a small space
-			\item make large data sets coherent
-			\item encourage the eye to compare different pieces of data
-			\item reveal the data at several levels of detail, from a broad overview to the fine structure
-			\item serve a reasonable clear purpose: description, exploration, tabulation or decoration
-			\item be closely integrated with the statistical and verbal descriptions of a data set
-		\end{itemize}
 
-		Tufte additionally provides a set of rules regarding graphical excellence:
-		
-		\begin{itemize}
-			\item create a well-designed presentation of interesting data - a matter of \textit{substance}, of \textit{statistics}, and of \textit{design}
-			\item ensure that complex ideas are communicated with clarity, precisions, and efficiency
-			\item give to the viewer the greatest number of ideas in the shortest time, with the least ink, in the smallest space
-			\item convey multivatiate data
-			\item tell the truth about the data
-		\end{itemize}
-		 
+
+%\subsubsection{Tufte: what makes a good visualisation}
+
+\textbf{Tufte: what makes a good visualisation}
+		\par 
+		Edward Tufte, a founding figure in laying out the core principles of data visualisation, provides us with a set of basic commandments \cite{Tufte2001}:		
+
 		\begin{figure}[H]
     			\centering	
-			{{\includegraphics[width=10cm]
-    				{img/graphical_excellence} 
+    			\subfloat[Poor Line Weights: unclear]												{{\includegraphics[width=7cm]
+    				{img/marey_train_bad.png} 
     			}}%
-    			\caption{Tufte's illustration of graphical excellence}%
-    		\label{fig:TufteExcellence}
+    			\qquad
+    			\subfloat[Better Line Weights: clear]
+    			{{\includegraphics[width=7cm]
+    				{img/marey_train_better.png} 
+    			}}%
+    			\caption{Tufte's train line chart demonstrating excessive data-ink}%
 		\end{figure}
 
-		\par 
-		 
-		A final set of Tufte \cite{Tufte2001} principles:
 		\par
 		\textbf{Principle One:} \textit{show only as much as is required}
 		\par 
@@ -385,6 +410,7 @@ Produce a more advanced system that allows for interrogation
 		\frac{\text{data-ink}}{\text{total ink used to print the graphic}}
 		$$
 		\\\
+
 		\textbf{Principle two:} \textit{include visual differences only when required} 
 		\par
 		The human brain has an amazing capability of spotting visual differences such as color, size and position. Often they look for the meaning to change depending on how these visual features and designed. If there is no difference, but embellishments are added, it often leads to confusion.
@@ -408,184 +434,34 @@ Produce a more advanced system that allows for interrogation
 		\textbf{Principle seven:} \textit{augment short term memory through visual patterns}
 		\par 
 		The human brain is limited to retaining around four pieces of information at any given time. By presenting quantitative information as visual patterns, more information can be simultaneously stored as one `piece'.
+		\textbf{Principle eight:}
+	\textit{Encourage the eye to compare different pieces of data}
+	\par 
+	Information is not something that exists in isolation, and often by comparing pieces of information one is brought to new conclusions about that data.
+	\textbf{Principle nine:}
+	\textit{Reveal the data at several levels of detail}
+	\par 
+	Quantitative data often has several scales, with patterns appearing at both a global and local level. By enabling the data to be viewed at different levels of detail the data can be explored in all it's complexity.
+	\textbf{Principle ten:}
+	\textit{Don't distort the data:}
+	Often it is tempting to change the scale on a graph for it to 'fit' appropriately, or to crop the data hiding anomalies. With these elements of distortion the full picture is not revealed, and the purpose of visualisation compromised. 
+\\\
+\subsection{Existing NN Visualisations}
 		
-		\begin{figure}[H]
-    			\centering	
-    			\subfloat[Poor Line Weights: unclear]												{{\includegraphics[width=7cm]
-    				{img/marey_train_bad.png} 
-    			}}%
-    			\qquad
-    			\subfloat[Better Line Weights: clear]
-    			{{\includegraphics[width=7cm]
-    				{img/marey_train_better.png} 
-    			}}%
-    			\caption{Tufte's train line chart demonstrating excessive data-ink}%
-		\end{figure}
-	
-			
-\textbf{Active Vision}
-		
-		\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/brain_bandwidth.png} 
-    			}}%
-    			\caption{Tor Nørretranders Brain Bandwidth}%
-    		\label{fig:TufteExcellence}
-		\end{figure}
-		
-
- 		There has been a small revolution in our understanding of human perception, sometimes called `active vision' \cite{Ware2010}. Active vision means that we should think about graphic designs as more than pretty images, but as cognitive tools that enhance and extend our brains. Diagrams, maps, web pages, information graphics, visual instructions, and more regularly help us to solve problems through a process of visual thinking, using the enormous proportion - almost half - of the human brain that is devoted to the visual sense.  
-	
-		\par 
-		Danish Physicist Tor Nørretranders discusses the ``bandwidth of our senses ” in computer terminology to give an idea of the power of this visual system. In the diagram it's amusing to observe the comparison, especially to the small white box at the corner which is \textit{0.7\%} of total power and is what we are aware off when all this processing is happening \cite{Tufte2012}.		
-		\par 
-		\textit{``We are all cognitive cyborgs in this Internet age in the sense that we rely heavily on cognitive tools to amplify our mental abilities. Visual thinking tools are especially important because they harness the visual pattern finding part of the brain."} \cite{Ware2010}.
-		\par 
-
-%\subsubsection{Visual Problem Solving}
-\textbf{Visual Problem Solving}
-	  		 
-  		\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/ware_popout_channels.png} 
-    			}}%
-    			\caption{Ware's things that pop-out}%
-    		\label{fig:Ware Pop-Out}
-		\end{figure}
-  		 
-		A useful way to describe the way the brain operates when it solves problems is as a set of nested loops \cite{Ware2010}. Outer loops deal with generalities, inner loops process the details. 
-		\par 
-		\textbf{Overview:} an outerloop constructs a series of steps to solve the problem and then executes them. For example, when observing the London Underground Map, these problems might be `find end point stations' or `find intersections' etcetera.
-		\par 
-		\textbf{Filter:} a middle loop will perform a visual search in order to find patterns that address the query above. This involves a series of rapid eye movements. 
-		\par 
-		\textbf{Details:} The inner loop will be activated when the eye arrives at a point of fixation: and the process of visual testing begins and patterns are evaluated at a rate of about twenty per second. 
-		\par 
-		When producing data visualisations it is important to think about the particular details of design. What does it take to make a graphic symbol that can be found rapidly? How can something be highlighted? The problem for the designer is to ensure all visual queries can be effectively and rapidly served \cite{Keim2002}. 
-
-		\subsubsection{Visual Properties}
-  		 
-  		 Human brains and visual systems have evolved to be highly sensitive to specific types of visual stimuli. The brain interprets stimuli in different ways and with varying levels of accuracy. For example, human brains can accurately differentiate between many different sizes, but only a relatively small number of line weights. The perceived area of a circle in fact grows more slowly than the actual physical and measured area. Experiments \cite{Meihoefer1973} show in fact that \textit{perceived area = $(actual area)^{x}$, where} $ x= 0.8 \pm 0.3 $. Human brains naturally consider lengths to be ranked, but not patterns. Some arrangements of lines imply groundings, whereas others imply hierarchies. Knowing how to use these properties effectively has a powerful effect on the accessibility and utility of a visualisation.\cite{Iliinsky2013}
-		\\\
-		There are a number of basic data types that can be visually encoded in some ways better than others:
-		\par 
-		\textbf{Categorical} groupings of things that are alike, but not ranked, ordered or numbered; flavours, regions, teams and other collections. 
-		\par 
-		\textbf{Quantitative or numeric} a numeric measure; dollars, units shipped, population and distance. 
-		\par 
-		\textbf{Ordinal} data that is ordered or ranked, and the sequence matters, but there isn't necessarily a specific value; steps in processes or sequences of events. 
-		\par 
-		\textbf{Relationship} includes grouping, hierarchy, influence, correlation or other non-numeric interactions; military rank, lists of requirements, etcetera. 
-		\par 
-		The visual properties most compatible with the above datatypes are determined by two fundamental factors: the number of useful variations or values of that visual property that the brain can perceive and whether or not the brain interprets that visual property as naturally ordered. 
-				
-		\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=10cm]
-    				{img/noah_illinsky_visual_encodings.png} 
-    			}}%
-    			\caption{Illinky's rules for 2D graphical encodings}%
-    			\label{fig:illinsky}
-		\end{figure}
-		
-		\par 
-
-	\subsubsection{Some standard visualisation types}
-
-	\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=10cm]
-    				{img/rui_wang_charts.png} 
-    			}}%
-    			\caption{Charts}%
-    		\label{fig:illinsky}
-	\end{figure}
-
- 		
-		\textbf{Charts:} Charts are probably the most popular techniques; they are very effective in presenting two or three dimensional data. There are many types of charts: x-y (and -z) plots, line graphs, bar and column charts, area charts, stacked bars and column graphs, histograms, pie charts, doughnut charts, box plots and many more \cite{Wang2015}. 
-
-	\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=10cm]
-    				{img/rui_wang_networks.png} 
-    			}}%
-    			\caption{Networks}%
-    		\label{fig:illinsky}
-	\end{figure}
-	
-		\textbf{Networks:} Node-link diagrams represent a powerful way of understanding entity relationships by showing their overall structure and the topology of the network. Node-link diagrams have the advantage of preserving local relationships. They make it easier to identify the nearest neighbours for example of a particular node or find the shortest path between two nodes.
-	
-	\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=10cm]
-    				{img/rui_wang_hierarchies.png} 
-    			}}%
-    			\caption{Hierarchies}%
-    		\label{fig:illinsky}
-	\end{figure}
-
-		\textbf{Hierarchies:} Common reasons to use hierarchies are, among others, are to gain insight to the structure of the hierarchy, to understand the distribution of data within the context of the structure, or to provide a summary of the data set into aggregated data in order to avoid information overload.
-		
-		\subsubsection{New Visual Encodings for Deep 	Learning}
- 			
-	\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/hinton_embedded_tsne.png} 
-    			}}%
-    			\caption{MNIST embedded digit plot}%
-    		\label{fig:mnistHinton}
-	\end{figure}
- 		
-
-		While there are a number of established best practices for visualising low dimensional data as explored above, many of these simply don't work when it comes to exploring neural networks - which are typically multi-dimensional. Labelling axes quickly becomes ridiculous when multiplied by 10,000 variables. Giving units when comparing very different types of data under one visual representation becomes equality redundant.
-		\par	 
-		It is important to recognise the fundamentals learnt from two dimensional visualisations, and extrapolate them when applying to more complex data sets. 
-		\par 
-		\cite{Olah2014} suggests a couple of principles to consider when visualising high-dimensional data that at first seem obvious, but in practice are rather hard to achieve:
-		\begin{itemize}
-			\item There must be a way to interrogate individual data points
-			\item There must be a way to get a high-level view of the data
-		\end{itemize}
-		\par 
-		One way to encode the data such that these rules are met is to make the visualisations interactive and allow the viewer to zoom in for detail, or expand out for a high-level view. 
-		\par 
- 		 		
- 	\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/word_embeddings_messy.png} 
-    			}}%
-    			\caption{Phrase embedded plot}%
-    		\label{fig:mnistHintonEmbedded}
-	\end{figure}
- 		
-		Interaction isn't always necessary however, and some attempts have been made to show data in a flat two dimensional representation using dimension reduction, which will be explored in depth a little later. The plot of the MNIST data set, a set of handwritten digits from one to nine, by \cite{Maaten2008} provides a clear non-interactive view of the data where spotting patterns such as the angle deformation of the `1' characters across a class clustering, or spotting simple misclassification becomes easy.
-		\par 
-		As with exploring two dimensional data its important to remember that there is no one rule that fits all. A less successful example of embedding data within the plot itself is by \cite{Cho2014} who attempt to visualise phrases. Here you can see that the data become messy incredibly quickly, and that perhaps interaction would be a better method of ensuring we retain Olahs principles. 
-		\par
-
-		Providing a user with the tools to control the data being visualised is incredibly important in engaging the user in the discovery process. The user must be able to change important network parameters, and immediately see the effects of such a change. They must also be able to compare and contrast different portions of the data through selection, and control the rate at which this change in information is depicted so as to allow them to discover patterns for themselves. 
-		\par 		
-		 		
-	\begin{figure}[H]
+	 Visualisation has been around helping researchers with neural networks for a long time, and techniques such as the \textit{Hinton diagram} were first demonstrated as early as 1986. This section provides a brief overview of similar techniques from around the nineties, where a number of the techniques are going to be visualisations of fig. \ref{simplenet}.
+	 
+	 	\begin{figure}[H]
     			\centering	
 			{{\includegraphics[width=0.3\textwidth]
     				{img/craven_simple_net.png} 
     			}}%
     			\caption{Simple Neural Network}%
-    		\label{fig:simple}
-	\end{figure} 		
- 		
-A compelling argument is made by  for interaction when exploring scientific data visually. He shows that there is often a situation where the data is so dense, where there is simply too much to explore in an effective way, that interaction in the only solution; instead hovering over the points and being provided with a tool-tip that demonstrates the points value. Interactive filtering can help, allowing the user to choose some number of easy to visualise classes. 
-
-	\subsection{ANN Visualisation: Early Years}
- 		
-	 Visualisation has been around helping researchers in neural networks for a long time, and techniques such as the \textit{Hinton diagram} were first demonstrated as early as 1986. This section provides a brief overview of similar techniques from around the nineties, where a number of the techniques are going to be visualisations of fig. \ref{simple}.
+    		\label{fig:simplenet}
+	\end{figure} 	
 		
-		\subsubsection{Hinton Diagram}
+%\subsubsection{Hinton Diagram}
+\textbf{Hinton Diagram}
+
 		 		
  	\begin{figure}[H]
     			\centering	
@@ -597,10 +473,11 @@ A compelling argument is made by  for interaction when exploring scientific data
 	\end{figure} 
  		
 		One of the first practical visualisations of ANNs was the \textit{Hinton Diagram} \cite{Hinton1986}. It visualises the weights and biases related to a node within a network. Weights are represented as boxes, where its area represents the weights magnitude, and it's shade represents the sign on the weight - white is positive, black is negative. Biases are illustrated as weights from a node back to itself. There is a vague representation of the architecture as output nodes appear at the top of a diagram, hidden nodes are in the middle, and input nodes are at the bottom. However these diagrams are rather unclear, and lack of topological information is a problem. The advantage is they make it easy to see the signs and magnitudes of the weights that contribute to a neurons activation.
-		\par 
+		\\\
+		\\\
 		
-		\subsubsection{Bond Diagram} 
- 		
+%\subsubsection{Bond Diagram} 
+\textbf{Bond Diagram}		
  	\begin{figure}[H]
     			\centering	
 			{{\includegraphics[width=0.3\textwidth]
@@ -615,8 +492,9 @@ A compelling argument is made by  for interaction when exploring scientific data
 		While it is perhaps easier to decipher the network structure from the Bond diagram, it is harder to gauge the relative importance of the weights and biases which have been depicted with different shapes. It makes the following question very difficult to answer: ``which input units need to be active in order for the net input to exceed the threshold (bias) of the hidden units?" \cite{Craven1992}, a useful question that Hinton diagrams are far better at answering.
 		\par 
 		
-		\subsubsection{Hyperplane Diagrams}
- 		
+%\subsubsection{Hyperplane Diagrams}
+\textbf{Hyperplane Diagrams}
+		
  	\begin{figure}[H]
     			\centering	
 			{{\includegraphics[width=0.3\textwidth]
@@ -631,7 +509,8 @@ A compelling argument is made by  for interaction when exploring scientific data
 		One issue with this hyperplane representation is that while accurately representing a threshold function acting on a two-dimensional input space, the diagrams fall down when compared with most contemporary ANNs that require multiple dimensions (>3) to be shown and more commonly use continuous transfer functions such as  the sigmoid - which requires a gradual, rather than a sudden, division of the input space. That said, it can be assumed that the hyperplane is a close approximation of the gradual boundary and so can still provide useful observations.
 		\par 
 		
-		\subsubsection{Response-function plots}
+%\subsubsection{Response-function plots}
+\textbf{Response-function plots}
 		
  	\begin{figure}[H]
     			\centering	
@@ -647,8 +526,9 @@ A compelling argument is made by  for interaction when exploring scientific data
 		Interestingly, both the Response-Function Plots and the hyperplane diagrams show the space between two successive layers of neurons. This provides only a fraction of information about the network, and problematically may lead to false assumptions about it. One way to address this is to describe the decision surface not just on the layer below, but across all previous layers of the input space.
 		\par 
 		
-		\subsubsection{Trajectory Diagrams}
- 		
+%\subsubsection{Trajectory Diagrams}
+\textbf{Trajectory Diagrams}
+		
  	\begin{figure}[H]
     			\centering	
 			{{\includegraphics[width=0.3\textwidth]
@@ -663,8 +543,9 @@ A compelling argument is made by  for interaction when exploring scientific data
 		Again, along with many of these other early visualisation methods, the weakness of the trajectory diagram is its inability to display weight spaces of more than three dimensions. There have been efforts to combine dimensionality visualisation with trajectory diagrams - such as using radially projected axes, however this is fairly unsuccessful \cite{Craven1992}. 
 		\par 
 		
-		\subsubsection{Lascaux}
- 		
+%\subsubsection{Lascaux}
+\textbf{Lascaux}
+		
 	\begin{figure}[H]
     			\centering	
 			{{\includegraphics[width=0.3\textwidth]
@@ -680,9 +561,8 @@ A compelling argument is made by  for interaction when exploring scientific data
 		\par 
 		The issue with \textit{Lascaux} is that too much information is being displayed in a small space ineffectively. The approach uses standard two dimensional visualisation techniques, and simply squashes them into a neural network architecture. This makes the topology easier to understand, but at the sacrifice of more important elements.
 
-	\subsection{ANN Visualisation: Parameters}
-	As visualisation within the neural network community became more popular, a number of other visualisations were developed.
-		\subsubsection{Weights and Connection}
+%\subsection{ANN Visualisation: Parameters}
+\textbf{Visualising Weights and Connections}
 		When representing weights, it is important to consider the analytical impact of a visual decision. \cite{Streeter2001} visualises the topology of the network but doesn't clearly show the weights themselves. This can lead to confusion when assessing the importance of a neuron. Consider for example a neuron that has appears to have a high value in one layer, however is subsequently cancelled out by low weights deeper within the network.
 	\par 
 	One problem here is that since the absolute values of the weights are used, the result does not provide the direction of the relationship. 
@@ -716,8 +596,9 @@ $ r_{ijo} = w_{ij} \times w_{jo} $, and the relative contribution from each inpu
  		
 	 This combination of statistical analysis and weight representation allows for a visualisation that demonstrates not only the raw data, but an abstraction that is more useful to the researcher given the relative importance of the nodes, and significance of the data - while still providing an architectural understanding of the network. This combination of mathematics and visualisation is one that continues across a number of other visualisation techniques for neural networks.
 	 
-	\subsubsection{Features}
-		Visualising the features of a CNN to gain an intuitive understanding about its internal behaviour is becoming commonplace, it is mostly limited to the simple visualisation of the 1st layer where projections to the pixel space are relatively easy to achieve. However there are exceptions, and a small number of researchers have developed methods for visualising deeper hidden layers.
+%\subsubsection{Features}
+\textbf{Features}
+		Another popular part of visualising neural nets, is visualising the features of a CNN to gain an intuitive understanding about its internal behaviour is becoming commonplace, it is mostly limited to the simple visualisation of the 1st layer where projections to the pixel space are relatively easy to achieve. However there are exceptions, and a small number of researchers have developed methods for visualising deeper hidden layers.
 		\par 
 		\textbf{\cite{Erhan2009}} sought to find the optimal stimulation of a unit activations through gradient descent in the image space. This has been criticised as difficult to obtain due to the need for careful initialization, and the lack of information conveyed about a units invariance. 
 		\par 
@@ -740,45 +621,131 @@ $ r_{ijo} = w_{ij} \times w_{jo} $, and the relative contribution from each inpu
 		\par 
 		Clearly with such a lot of attention placed on visualising featurizations, it's a significant opportunity to learn about the networks. It's important to realise however that one of the above is not necessarily better than the others: each show a different element of the featurization, and as experts still know relatively little about the behaviour of ANNs it's important to not discard any of these visual aids rashly.
 		
-		\subsubsection{Classification Uncertainty}
-		 		
- 	\begin{figure}[H]
+		\begin{figure}[H]
     			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/hinton_probability.png} 
+		{{\includegraphics[width=18cm]
+    				{img/rui_wang_vis_overview} 
     			}}%
-    			\caption{Class probability distribution}%
-    		\label{fig:lascaux}
-	\end{figure}
- 		
- 		During classification, a neural network outputs a value representation of the uncertainty of its decision, this is usually represented as a probability distribution over the outputs. 
-
-	 	\par 
-		 High and low values indicate clear classification, and central values indicate high uncertainty and that the data is difficult for the neural network to classify. \cite{Tzeng2005} uses a parallel coordinate system to show this uncertainty, and uses colour to highlight data that is difficult for the system to classify.
-		\par 
-		\cite{Talbot2009} shows this uncertainty, in a confusion matrix to visually represent a classifier as a graphical heat-map. They also implement an interaction system that allows users to partition the class space into multiple subsets, allowing experts to get both global and local level views of the data.
- 		 
- 		 \begin{figure}[H]
-    			\centering	
-    			\subfloat[Covariance Matrix]											{{\includegraphics[width=0.3\textwidth]
-    				{img/deepviz_covariance.png} 
-    			}}%
-    			\qquad
-    			\subfloat[Parallel coordinate system]
-    			{{\includegraphics[width=0.3\textwidth]
-    				{img/tzeng_parallel.png} 
-    			}}%
-    			\caption{ }%
-    			\label{fig:studentprofile}
+    			\caption{Overview of visualisation software by Rui Wang}%
+    		\label{fig:studentprofile}
 		\end{figure}
 		
-		
+\section{Data Collection}	
+	\subsection{Programming a NN}
+	\textbf{Which Section}
+	\textbf{Question / Implementation Goal}
+	\textbf{My Solution / Design}
+	\textbf{What did I need to Explore}
+	\textbf{Theory or Software}
+	\textbf{What did I try, Implementation}
+	\textbf{How successful / unsuccessful was it? - pro's, con's, comparison}
+	\textbf{Significance to main goal}
+	\textbf{Outcome of the exploration, and significant questions left to answer}
+	\textbf{What to explore next?}
+	\subsection{A need for dimensionality reduction}
+
+\section{Iteration 1: Animation}
+	\subsection{The Product}
+	\subsection{Analysis: Neural Network Response}
+	\subsection{Analysis: Visualisation Response}
+	\subsection{Analysis: Implementation Response}
+	
+\section{Iteration 2: Online Interaction}
+	\subsection{The Product}	
+	\subsection{Analysis: Neural Network Response}
+	\subsection{Analysis: Visualisation Response}
+	
+\section{Iteration 3: Epochs \& Layers}
+	\subsection{The Product}	
+	\subsection{Analysis: Neural Network Response}
+	\subsection{Analysis: Visualisation Response}
+	\subsection{Analysis: Implementation Response}
+	
+\section{Iteration 4: metaSNE}
+	\subsection{The Product}
+	\subsection{Analysis: Neural Network Response}
+	
+\section{Conclusions and Future Work}
+	\subsection{Expanding the Automatic Neural Network}		
+	\subsection{Widening the Visualisation Toolbox}
+	\subsection{Using different Visualisation UI techniques}	
+	\subsection{Adapting an API for other Neural Network Packages}
+	
+\section{Structure}
+	\textbf{Which Section}
+	\textbf{Question / Implementation Goal}
+	\textbf{My Solution / Design}
+	\textbf{What did I need to Explore}
+	\textbf{Theory or Software}
+	\textbf{What did I try, Implementation}
+	\textbf{How successful / unsuccessful was it? - pro's, con's, comparison}
+	\textbf{Significance to main goal}
+	\textbf{Outcome of the exploration, and significant questions left to answer}
+	\textbf{What to explore next?}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Progress Summary}
+	\subsection{Investigation and Data Collection}
+		\subsubsection{Survey}
+		Deep Neural Networks sometimes contain hundreds of parameters which one can tweak, and a vast array of elements that may be added or subtracted from the standard network architectures described earlier.
 		\par 
-		A confusion matrix represents classification results by plotting the columns as an instance's predicted class and the rows an instance's true class. They reveal trends and patterns in classification results and thus the behaviour of the classifier itself. Usefully, a confusion matrix is entirely model agnostic and can therefore allow direct comparison between different instances of trained models.
+		While it would be great to visualise everything in this project - unfortunately this isn't feasible, and so in order to establish which areas to start on, a survey has been created to distribute amongst the vast deep learning community. 
+		\par 
+		There are three components to the survey:
+		\begin{itemize}
+			\item \textbf{Working Environment:}
+		In order to assess which areas would be most effective in terms of increasing efficiency of work, the aim is to find out which broad areas of working with DNNs take up most time.
+		\par 
+		To ensure that any tools developed throughout this project are suitable to both the academic and practitioner communities, the survey aims to find out which packages and languages people are most familiar with.
+			\item \textbf{Training Methods}
+		In order to develop visualisations that are immediately useful, the survey aims to find out what the most frustrating problems are for the researcher, and to avoid duplication of what exists already - ask if they have found effective solutions to these problems.
+		\par
+		Two other questions aim to diagnose which parameters are \textit{A} most important to producing a working network, and \textit{B} most commonly tweaked.
+			\item \textbf{Visualisation}
+		The section begins by showing five images of DNNs being visualised in a variety of different ways, with the aim of clarifying any misunderstandings about what it means to visualise these networks. As a bonus, the survey uses these to deduce which appear to be most useful - each is in it's own distinct category of visualisation.
+		\par 
+		Having established what visualisations may be possible, the survey continues to ask more focussed questions aimed at understanding if people have had prior experience with visualisation, where and why they think they would use it, and how they would like to interact with it if such a thing existed. This information is both explicitly asked for an implicitly deduced by a series of free-text and selection questions.
 		
-	\subsection{ANN Visualisation: Multiple Dimensions}
-	Human brains are incredibly good at understanding two and three dimensions, with a bit of effort its possible to reason in four. An inherent difficulty with understanding ANNs is that we cannot truly hope to understand multi-dimensional problems.
-	\subsubsection{Visualising High-Dimensional Data}
+		\end{itemize}
+		\par
+		
+\subsection{Thinking in Multiple Dimensions}
+	Human brains are incredibly good at understanding two and three dimensions, with a bit of effort its possible to reason in four. An inherent difficulty with understanding ANNs is that we cannot truly hope to understand multi-dimensional problems. So in order to understand the neural networks we must think about methods to understand high-dimensional data.
+\\\
+\\\
+%\subsubsection{Visualising High-Dimensional Data}
+\textbf{Visualising High-Dimensional Data}
 	Visualising high-dimensional data is a very important problem in several different domains that each deal with data of widely varying dimensionality. It is therefore a very well explored problem and a number of techniques for visualising high-dimensional data exist, a summary of which was composed by \cite{Cristina2003}.
 	\par 
 	This covers techniques by a number of different authors;	
@@ -822,8 +789,11 @@ $ r_{ijo} = w_{ij} \times w_{jo} $, and the relative contribution from each inpu
 		
 	\par 
 	While these tools do have their uses as visualisation techniques, when it comes to exploring the high-dimensional data of neural networks they have been criticized \cite{Maaten2008} as simply providing the tools to \textit{display} more than two data dimensions, and leave a more difficult task of interpretation to the viewer. With dimensions of real-world data used in DNNs often in the thousands, these techniques may provide limited insight.
+\\\
+\\\
 
-		\subsubsection{Dimensionality Reduction}
+%\subsubsection{Dimensionality Reduction}
+\textbf{Dimensionality Reduction}
 		Dimension reduction differs from dimensionality visualisation, in that instead of visualising the multiple dimensions of a dataset in a format such as those already described, it actually converts the high-dimensional data set  $ X = \{ x_{1}, x_{2},..., x_{n} \} $ into a low-dimensional data set that can then be displayed easily in a standard recognisable formats such as the scatter plot. Dimensionality reduction aims to preserve as much of the significant structure of the data in higher-dimensions as possible while generating a low-dimensional representation that is easier for the user to interpret. This is fundamentally important for neural nets.
 		\par 
 		It is possible to draw a notion of how successful this dimensional reduction is by assuming that for any two data points, $ x_{i} $ and $ x_{j} $ there are two notions of distance between them that we can compare. First, is the distance between those points in the representation space, for example the L2 distance $ d(x_{i,j}) = \sqrt{\sum\nolimits_{n} (x_{i,n} - x_{j,n})^2 } $, and the other is the  distance between the points in the visualisation, $ d_{viz}(x_{i,j}) $, such that a cost function of the visualisations success can be defined.
@@ -842,16 +812,7 @@ $ r_{ijo} = w_{ij} \times w_{jo} $, and the relative contribution from each inpu
 			\frac{ [d(x_{i,j}) - d_{viz}(x_{i,j}) ]^2 }					{d(x_{i,j})}
 		$$
 		For some data structures this doesn't work particularly well, so another alternative is to use graph based visualisation. Here its possible to explicitly specify the aim of the dimensionality reduction; preserve local structure. 
-		 		
- 	\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/colah_nearest_neighbour.png} 
-    			}}%
-    			\caption{Three Nearest Neighbour Graph}%
-    		\label{fig:3nn}
-	\end{figure}	 	
- 		
+
 		\par 
 		In order to do this a nearest neighbour graph is used; consider a graph $ ( \bm{V}, \bm{E}) $ of vertices $ \bm{V} $ and edges $ \bm{E} $ where the nodes are data points. One can arbitrarily choose the number of nearest neighbours to compare, but assuming three; if each point is connected to three other points within the original space, encoding the local structure clearly while forgetting about the rest. Using a standard force-directed graph all the points are treated as repelling charged particles, and the edges are springs - another visualisation is produced. Computing this gives us another cost function \cite{Olah2014b}:
 		$$
@@ -892,31 +853,13 @@ $ r_{ijo} = w_{ij} \times w_{jo} $, and the relative contribution from each inpu
  		
 		More recently, and in direct challenge to those mentioned above, \textit{t-Distributed Stochastic Neighbour Embedding} \cite{Maaten2008} has provided a successful and widely used alternative for neural network researchers. t-SNE, as it is abbreviated, captures much of the local structure of high-dimensional data, while also revealing global structure such as the presence of clusters at several different scales.
 		\par 
-		t-SNE can therefore be viewed as preserving the topology of the data. t-SNE constructs for every data point a notion of which other points are it's `neighbours' and tries simultaneously to ensure that all points in the data have the same number of neighbours. t-SNE is a lot like the nearest-neighbour graph described above, however instead having a set number of neighbours connected by edges, and non-neighbours for which there are no connections, data points in the t-SNE reduction have a continuous spectrum of neighbours, for which they are neighbours to different, non-binary, extents. This makes t-SNE very powerful in revealing gloabl clusters and local subclusters within the data.
+		t-SNE can therefore be viewed as preserving the topology of the data. t-SNE constructs for every data point a notion of which other points are it's `neighbours' and tries simultaneously to ensure that all points in the data have the same number of neighbours. t-SNE is a lot like the nearest-neighbour graph described above, however instead having a set number of neighbours connected by edges, and non-neighbours for which there are no connections, data points in the t-SNE reduction have a continuous spectrum of neighbours, for which they are neighbours to different, non-binary, extents. This makes t-SNE very powerful in revealing global clusters and local subclusters within the data.
  		
-	\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/colah_wiki_large.png} 
-    			}}%
-    			\caption{Wikipedia visualised with t-SNE}%
-    		\label{fig:wiki}
-	\end{figure}	  	
-
 		\par
 		 The one downside of t-SNE is that it's prone to getting stuck at local minima, and due to it's increased complexity is more computationally expensive to run, such that changes cannot be made and visualised in real time on standard machines and can take any number of hours, or days even, to produce.  
 		\par 
 		t-SNE has been used to visualise MNIST to great success \cite{Maaten2008} and its retention of both global and local structure are clear when we examine clusters for patterns that emerge; such as with the ones, as they go from one angled variation across a spectrum to another with the cluster.
- 		
- 	\begin{figure}[H]
-    			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/colah_tsne_distribution.png} 
-    			}}%
-    			\caption{Ones visualised by tSNE}%
-    		\label{fig:wiki}
-	\end{figure}	  
- 		
+
 		\par 
 		Interestingly while a lot of these were designed for two dimensional representations of multi-dimensional data, they can significantly improved when visualised in three dimensions.
 		\par 
@@ -1100,74 +1043,82 @@ $ r_{ijo} = w_{ij} \times w_{jo} $, and the relative contribution from each inpu
 		It is possible here that this space could be used to see how current model representations compare to other `landmark' representations from past experiments. If the models first layer representation is in the same place as a really successful model, then that's likely to be positive. If however it's tending towards a cluster that had some specific poor quality, the researcher would know to adjust for this too. This provides us with some qualitative feedback during the training of the neural network. 
 		
 
-
-\subsection{Existing Visualisation Software}
-
-		\begin{figure}[H]
+		
+		
+\subsubsection{New Visual Encodings for Deep 	Learning (REJIG TO MAKE MORE ME!!!)}
+ 			
+	\begin{figure}[H]
     			\centering	
-		{{\includegraphics[width=18cm]
-    				{img/rui_wang_vis_overview} 
+			{{\includegraphics[width=0.3\textwidth]
+    				{img/hinton_embedded_tsne.png} 
     			}}%
-    			\caption{Overview of visualisation software by Rui Wang}%
-    		\label{fig:studentprofile}
-		\end{figure}
-		
-	There are a number of tools for visualising elements of what we have discussed above, below is a short summary of some commonly used tools and their features derived in part from \cite{Wang2015}:
-	\par 
-		\textbf{D3.js} is an open source library built in JavaScript and is designed to use the capabilities of web standards such as CSS3 (Cascading Style Sheets), HTML5 and SVG (Scalable Vector Graphics). It was created by researchers from Stanford University's Visualisation Group. It has implementations of animations, interactions and other  complex and dynamic visualisation types. It addresses many of the challenges derived from visualisation on the web by putting emphasis on the efficient manipulation of HTML elements. It's kernel uses pre-built JavaScript functions to select elements, create SVG objects as well as style them, add transitions or dynamic effects.
-		\par
-		\textbf{JFreeChart} is a free Java Library for developing graphs and charts. Although it is not open-source it is potentially one of the most widely used libraries in Java for charting. The library supports most common chart types and its API includes interactive features such as tool tips, colour gradients, drop-shadows and zooming. 
-		\par 
-		\textbf{Google Charts} is a free, non open-source, JavaScript-based visualisation package. Developed by Google, it allows users to embed different kinds of charts and maps in their web pages. The most common way to use Google Charts is by embedding the JavaScript a web-page. Handily, the charts can read data directly from a web page, from a database or even stored in a Google Spreadsheet. 
-		\par 
-		\textbf{matplotlib}
-		is an open source library written in python and is aimed at creating primarily 2D plots. These plots are embeddable in a graphical user interface (GUI) for application development and its code is easy to understand and extend. A large user community has developed a lot of powerful tools on the back of it.
-		\par 
-		\textbf{Gephi}
-		is an open source Java based platform for visualising and manipulating large graphs. It is often regarded as the Photoshop for networks and graphs as users can interact with the graph representation and manipulate its structure, shape and colour. Gephi has a built-in OpenGl engine and is therefore able to visualise and interact with very large networks in real-time. Additionally Gephi's software architecture is built on top of the `NetBeans' platform, meaning it can be extended or reused easily through well-written APIs.
-		\par 
-		\textbf{Graphviz} is an open source software package created by AT\&T for visualising connectivity graphs. It contains many standard graph layouts which can be used via a programming interface, command line tools, GUIs and web browsers.
-		\par 
-		\textbf{Sigma.js}
-		is another source JavaScript library, it is backed by the company `Sciences-Po Medialba'. The library is dedicated to graph drawing, using either HTML5 canvas or WebGL. It has been specifically designed to interactively display graphs exported from other software in real time. It is lightweight and doesn't require external dependencies. The default configuration of Sigma.js provides a variety of built-in features, like HTML5 web canvas and WebGL renderers, mouse and touch support. At its core it is a rendering engine and does not include many graph related features out of the box such as layout and clustering.
-		\par 
-		\textbf{mxGraph}
-		is a family of libraries that provide features for displaying interactive diagrams and graphs. It provides a range of commonly required functionalities to draw, interact with and associate a context with a diagram. It can represent nodes in shapes, images, vector drawings and animations. Developers can then interact with the generated diagrams through a series of actions like dragging or cloning of cells, resizing and reshaping, connecting and disconnecting, drag and dropping, or in-place editing. It also offers a flexible API for developers to program the behaviour of these interactions. 
-		\par 
-		\textbf{DeepViz} was produced by a group of Berkeley researchers\cite{Bruckner2013} in 2013, and aimed to provide an interactive visualisation system specifically for CNNs. It is built on a featurization system, Decaf\cite{Donahue2013} that provides a number of features that allow users to explore convolutional filters as bitmaps, view side-by-side comparisons of weight matrices, see a time line visualisation of their model, and view class output accuracy as a confusion matrix. It is a python implementation with a GUI interface. While it appears to provide a lot of useful tools for ANNs, it is rudimentary and lacks any interaction functionality that would transform it from a tool used to produce visualisations, into a tool to explore through visualisation. It is however an opensource project specifically targeted for CNNs.
-		\par 
-		\textbf{Expresso}
-		Expresso, is a GUI tool that has been built on top of Caffe, a popular framework used to develop neural networks. Built by a team of researchers from the Indian Institute of Science \cite{Dholakiya2015} who describe it as a ``wizard-like graphical interface which guides the user through various common scenarios." It includes number of features such as Caffe data import, construction of a Caffe model and GUI for training of deep networks, analysis and basic visualisation of experiments using bitmaps. Like DeepViz, it is also built on top of the open source featurization system Decaf \cite{Donahue2013}. Unfortunately with so much functionality, it is a clunky beta version at present.
-		\\\
-		The on-going explosion of large datasets presents a significant challenge to existing visualisation libraries. Since most of the libraries focus on handling data sets of small or intermediate size, the majority of them are not designed with scalability in mind. While the parallel computing and GPU-based implementations allow visualisation libraries to access significant compute, the approach often requires specific knowledge to understand the platform or parallelisation mechanism.
-		\par 
-		Additionally, most of the existing visualisation libraries fall pray to the classic problem of a `do it all' approach, aiming to please everyone while not fully pleasing anyone. They also are greatly influenced by the technologies they are written in, and it's incredibly hard to produce visualisations across language. Recently, more language agnostic means of data transformation have appeared due to browser led development, passing data through RESTful APIs, JSON objects, simple .CSV documents, or interacting with tabling tools such as exported from googlesheets. This is likely to be the path that future visualisation libraries take.
+    			\caption{MNIST embedded digit plot}%
+    		\label{fig:mnistHinton}
+	\end{figure}
+ 		
+ 	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.3\textwidth]
+    				{img/colah_tsne_distribution.png} 
+    			}}%
+    			\caption{Ones visualised by tSNE}%
+    		\label{fig:wiki}
+	\end{figure}	  
+ 		
+		 		
+ 	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.3\textwidth]
+    				{img/colah_nearest_neighbour.png} 
+    			}}%
+    			\caption{Three Nearest Neighbour Graph}%
+    		\label{fig:3nn}
+	\end{figure}	 	
+ 		
 
-\section{Progress Summary}
-	\subsection{Investigation and Data Collection}
-		\subsubsection{Survey}
-		Deep Neural Networks sometimes contain hundreds of parameters which one can tweak, and a vast array of elements that may be added or subtracted from the standard network architectures described earlier.
+		While there are a number of established best practices for visualising low dimensional data as explored above, many of these simply don't work when it comes to exploring neural networks - which are typically multi-dimensional. Labelling axes quickly becomes ridiculous when multiplied by 10,000 variables. Giving units when comparing very different types of data under one visual representation becomes equality redundant.
+		\par	 
+		It is important to recognise the fundamentals learnt from two dimensional visualisations, and extrapolate them when applying to more complex data sets. 
 		\par 
-		While it would be great to visualise everything in this project - unfortunately this isn't feasible, and so in order to establish which areas to start on, a survey has been created to distribute amongst the vast deep learning community. 
-		\par 
-		There are three components to the survey:
+		\cite{Olah2014} suggests a couple of principles to consider when visualising high-dimensional data that at first seem obvious, but in practice are rather hard to achieve:
 		\begin{itemize}
-			\item \textbf{Working Environment:}
-		In order to assess which areas would be most effective in terms of increasing efficiency of work, the aim is to find out which broad areas of working with DNNs take up most time.
-		\par 
-		To ensure that any tools developed throughout this project are suitable to both the academic and practitioner communities, the survey aims to find out which packages and languages people are most familiar with.
-			\item \textbf{Training Methods}
-		In order to develop visualisations that are immediately useful, the survey aims to find out what the most frustrating problems are for the researcher, and to avoid duplication of what exists already - ask if they have found effective solutions to these problems.
-		\par
-		Two other questions aim to diagnose which parameters are \textit{A} most important to producing a working network, and \textit{B} most commonly tweaked.
-			\item \textbf{Visualisation}
-		The section begins by showing five images of DNNs being visualised in a variety of different ways, with the aim of clarifying any misunderstandings about what it means to visualise these networks. As a bonus, the survey uses these to deduce which appear to be most useful - each is in it's own distinct category of visualisation.
-		\par 
-		Having established what visualisations may be possible, the survey continues to ask more focussed questions aimed at understanding if people have had prior experience with visualisation, where and why they think they would use it, and how they would like to interact with it if such a thing existed. This information is both explicitly asked for an implicitly deduced by a series of free-text and selection questions.
-		
+			\item There must be a way to interrogate individual data points
+			\item There must be a way to get a high-level view of the data
 		\end{itemize}
+		\par 
+		One way to encode the data such that these rules are met is to make the visualisations interactive and allow the viewer to zoom in for detail, or expand out for a high-level view. 
+		\par 
+ 		 		
+ 	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.3\textwidth]
+    				{img/word_embeddings_messy.png} 
+    			}}%
+    			\caption{Phrase embedded plot}%
+    		\label{fig:mnistHintonEmbedded}
+	\end{figure}
+ 		
+		Interaction isn't always necessary however, and some attempts have been made to show data in a flat two dimensional representation using dimension reduction, which will be explored in depth a little later. The plot of the MNIST data set, a set of handwritten digits from one to nine, by \cite{Maaten2008} provides a clear non-interactive view of the data where spotting patterns such as the angle deformation of the `1' characters across a class clustering, or spotting simple misclassification becomes easy.
+		\par 
+		As with exploring two dimensional data its important to remember that there is no one rule that fits all. A less successful example of embedding data within the plot itself is by \cite{Cho2014} who attempt to visualise phrases. Here you can see that the data become messy incredibly quickly, and that perhaps interaction would be a better method of ensuring we retain Olahs principles. 
 		\par
-		
+
+		Providing a user with the tools to control the data being visualised is incredibly important in engaging the user in the discovery process. The user must be able to change important network parameters, and immediately see the effects of such a change. They must also be able to compare and contrast different portions of the data through selection, and control the rate at which this change in information is depicted so as to allow them to discover patterns for themselves. 
+		\par 		
+		 		
+	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.3\textwidth]
+    				{img/craven_simple_net.png} 
+    			}}%
+    			\caption{Simple Neural Network}%
+    		\label{fig:simple}
+	\end{figure} 		
+ 		
+A compelling argument is made by  for interaction when exploring scientific data visually. He shows that there is often a situation where the data is so dense, where there is simply too much to explore in an effective way, that interaction in the only solution; instead hovering over the points and being provided with a tool-tip that demonstrates the points value. Interactive filtering can help, allowing the user to choose some number of easy to visualise classes. 
+
+
+
 		\subsubsection{Categorising and Understanding Academic Visualisations}
 		One area within the field of Deep Learning that uses vast amounts of visual material, if aggregated, is across the academic body of research. 
 		\par 
