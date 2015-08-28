@@ -1029,13 +1029,12 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
 		\item Not only does the animation enable us to compare data, but in doing so we also satisfy Tufte's seventh principle to \textit{augment short term memory through visual patterns}. While it was possible previously to compare tSNE plots by flicking through image - we are essentially automating this process with the animations which, as is often referenced in visualisation theory, leaves an imprint on the retina of the previous image - thus augmenting our memory with the visualisation. 
 	\end{itemize}
 	
-	\subsection{The Tool}
 	While animation is definitely a great way to enhance our understanding of the neural network data by bring patterns across the tSNE plots to the fore of our mind, it is not in itself a stand alone too. It is simply a method of processing. 
 	\par 
 	The aim of this project however is to produce a tool for researchers to use to help them better understand neural networks and tweak parameters to ultimately ensure the successful training of their neural networks.
 	\par 
 	
-	\subsubsection{Design}
+	\subsection{Design}
 	Before setting out to build the tool, a number of options for the best way to display animations were considered. User interface components were continually sketched, and wireframes evaluated in response to the needs of neural network researchers and in relation to visualisation best practices. 
 	\par 
 	Unfortunately it was not possible to get a large range of feedback on the designs due to time constraints, however the little feedback that was attained from fellow students researching with neural networks enabled the project to progress from iterations two, three and four. 
@@ -1047,7 +1046,9 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
     			\caption{An initial sketch displaying animations moving across the screen as the net trains}%
 	\end{figure}		
 	
-	\subsubsection{Architecture}
+	
+	
+	\subsection{Architecture}
 	This early iteration was developed in a lightweight manor in keeping with the \textit{lean product development} methodology \cite{}. This development style states that a \textit{Minimal Viable Product (MVP)} should be built when testing ideas to enable fast testing and learning, which can then be reapplied to the product later without fear of completely rewriting the entire product.
 	\par 
 		
@@ -1090,65 +1091,45 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
 	\subsection{Online and interactive}
 	In response to the points highlighted by the first design iteration, the second iteration focussed on placing as much of the process online and therefore should enable the much required interactive element of the product. 
 	\par 
-	In order to place the content online, the author spent a sizeable amount of time learning to use the \textit{MEAN} development stack: Mongo (for the database), Express (for the routing), Angular (for the frontend interaction) and Node (the server). 
+	It's useful once again to to situate the project in the realm of Edward Tufte's visualisation principles so that we can assess the success of this new proposal that seeks to be interactive and online, and therefore also enabling the use of JavaScript and thus interactivity. In addition to all of the previous Tufte rules that we have successfullly achieved, there comes two more by bringing the data online. 
+	\begin{itemize}
+		\item Through the use of a common interactive concept for the web \textit{tooltips}, which is simply text that hovers above the object that the mouse is focusing upon at any one moment in time, we can satisfy Tufte's sixth principle to \textit{visually highlight your message}. 
+		\item In addition, where previously in the animations there was no way to dig into the data without decreasing quality cause by poor pixel representations - the capability of the browser to handle \textit{Scalable Vector Graphics, SVGs} enables the researcher to zoom in on the large data sets to observe the local structure captured by tSNE, and to zoom out observing the global structure. This coincidently allows us to achieve another one of Tufte's principles of quality visualisation" \textit{Reveal the data at several levels of detail}. 
+	\end{itemize}
+	
+	\subsection{Design}
+	The previous idea was for the animations to load after each model had trained - displaying the full transformation of a model from one that classified poorly with certain distinct characteristics, to one that classified well - potentially again displaying specific characteristics. 
 	\par 
-	In addition, in order to produce the much called for SVG plots the \textit{D3.js}, or \textit{Data Driven Documents} was used. 
-	
-	\subsection{The Tool}
-		\subsubsection{Design}
-			
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/tooltip-text-iter2.png} 
-    			}}%
-    			\caption{Tooltips}%
-	\end{figure}		
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/SKE-iter2-A.png} 
-    			}}%
-    			\caption{Wireframe Design}%
-	\end{figure}	
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/SKE-iter2.png} 
-    			}}%
-    			\caption{Wireframe Design}%
-	\end{figure}		
+	This version differed in it's approach. Influenced by Andrej Karparthy's tSNE visualisations, this model visualised the optimising of the tSNE cost function over time, or with respect to certain 'steps'. As shown below in the initial sketch designs below the aim was to show how tSNE functioned pulling apart the classes. 
+	\par 
+	The value of doing this would be to observe how the local and global structures emerged over the course of the tSNE optimisation to a 2D representation that more accurately represented the multiple dimensions of the neural network activation data. 
+	\par 
+	In addition the researcher should be able to choose from the models already stored in the database by selecting a plot based on simple criteria such as: 
+	\begin{itemize}
+		\item Experiment: choose from all the experiments run since the visualisation tool was created.
+		\item Epoch: choose which epoch you want to run, to be able to compare earlier epochs with later ones - testing if the model was indeed still training even if the Loss values had plateaued - enabling you to see if those last few annoying samples were slowly being better classified. For example the unfortunate event where Googles algorithms identified people with Black skin as monkeys - a severe mistake, and one that caused them significant embarrassment. 
+		\item Layer: looking by layer shows activations are indeed propagating from one layer to the next, and serving as a proxy to see that the network is actually adjusting the weights later in the network. It's a common, and sometimes hard to diagnose problem, if weights are not changing sufficiently due to poor network initialisation or some other complication.
+	\end{itemize}	 
 	
 	\begin{figure}[H]
     			\centering	
-    			\subfloat[]								{{\includegraphics[width=0.15\textwidth]
-    				{img/Iter2_30_53.png} 
+    			\subfloat[Using Angular.js Repeat with Dropdowns]								{{\includegraphics[width=0.4\textwidth]
+    				{img/SKE-iter2-A.png} 
     			}}%
     			\qquad
-    			\subfloat[Barnes Hut SNE after applying Principle Components Analysis]									{{\includegraphics[width=0.15\textwidth]
-    				{img/Iter2_30_59.png}
+    			\subfloat[Using Angular.js Sliders]									{{\includegraphics[width=0.4\textwidth]
+    				{img/SKE-iter2.png}
     			}}%
-    			 \qquad
-    			\subfloat[Barnes Hut SNE after applying Principle Components Analysis, and Varimax Orthogonalisation]									{{\includegraphics[width=0.15\textwidth]
-    				{img/Iter2_31_12.png} 
-    			}}%
-    			\caption{Screenshots of growth from iteration two}%
+    			\caption{ }%
     			\label{fig:iter2}
-	\end{figure}	
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/Iter2_31_28.png} 
-    			}}%
-    			\caption{SVG circles used in scatterplots}%
-	\end{figure}
-
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/LOGO-d3.png} 
-    			}}%
-    			\caption{}%
 	\end{figure}		
+		
+	\subsection{Architecture}
+		In order to bring the content online, the author spent a sizeable amount of time learning to use the \textit{MEAN} development stack: Mongo (for the database), Express (for the routing), Angular (for the frontend interaction) and Node (the server). 
+	\par 
+	In addition, in order to produce the much called for SVG plots the \textit{D3.js}, or \textit{Data Driven Documents} was used. 
+	\par 
+	Now that the project is entirely written in javascript, it seemed pointless to have a Python system crunching the tSNE data as well. Far better infact to simply store in the database and call from the JavaScript sever to feed to the front end via. a \textit{RESTful API}. This therefore required a JavaScript implementation of the tSNE algorithm as well. 
 
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
@@ -1156,27 +1137,35 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
     			}}%
     			\caption{UML for iterations 1 \& 2}%
 	\end{figure}
-	
+
+
+		\subsubsection{tSNE.js}
+		Andrej Karpathy, a Stanford PhD student researching neural networks has developed a series of JavaScript based projects that relate to neural networks. While his famous projects is a implementation of a convolutional neural network, he also openly supplies an implementation of the tSNE algorithm in Javastript - \texttt{tSNE.js}.
+		\par 
+		This second iteration used tSNE.js and followed the example given by Karpathy online in order to produce a tSNE plot that grows over time. The graph below is his implementation applied to word-embeddings \cite{karpathy} 
+		
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
-    				{img/d3circlescottmurray.png} 
+    				{img/karpahy_tsne.png} 
     			}}%
-    			\caption{SVG circles used in scatterplots}%
+    			\caption{Andrej Karpathy Implementation}%
 	\end{figure}	
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/d3codeenterupdateexit.png} 
-    			}}%
-    			\caption{D3 managing data responsively}%
-	\end{figure}	
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/d3easytodata.png} 
-    			}}%
-    			\caption{Demonstration of automatic adjustments}%
-	\end{figure}	
+		
+	\subsubsection{Node Server}
+		Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.\cite{Dahl2009}
+		\par 
+		In 2011, a package manager was introduced for Node.js library, called npm. The package manager allows publishing and sharing of open-source Node.js libraries by the community, and simplifies installation, updating and uninstallation of libraries \cite{Dahl2009}.
+		\par 
+		These features make Node.js an ideal option for developing a visualisation tool for, and were it developed further could lead to the easy development of a version for node package manager. Indeed, npm is already a common method of sharing proprietary DNN software within the DL community.
+		 
+		\subsubsection{D3 Visualisation Library}
+		D3.js, or Data Driven Documents, is a JavaScript library for producing dynamic, interactive data visualizations in web browsers.
+		\par 
+		D3 allows the binding of arbitrary data to a Document Object Model (DOM), and then apply data-driven transformations to the document. For example, you can use D3 to generate an HTML table from an array of numbers. Or, use the same data to create an interactive SVG bar chart with smooth transitions and interaction.\cite{Bostock2011a}.
+		\par
+		D3 is extremely fast at supporting large datasets, making it ideal for working with the large output of the neural networks. The dynamic behaviours enabled for interaction and animation make it highly suited to the task of exploring visualised data with the aim of deriving new insights from such data.
+
+	D3 uses a sophisticated method of joining data with the DOM. With three simple commands (Enter, Update, Exit) it enables you to tell D3 the relationship you want to exist between your data and your SVG. For example, you might want circle elements to correspond to data. Instead of telling D3 to create circles and then collect all the circles and assign each datapoint a circle, as you might do with jQuery.
 	
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
@@ -1185,27 +1174,96 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
     			\caption{D3 Data Binding}%
 	\end{figure}	
 	
+	Data points, such as the coordinates in a tSNE plot, that are joined to existing circles produce the update selection. While unbound data (data for which there are no circles) produce the enter selection (left). Then, any remaining unbound circles produce the exit selection (right). Often these are the points we want to remove. The significance of this is that a scatterplot can be created with not much more code that the following code:
+	
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
-    				{img/d3scales.png} 
+    				{img/d3codeenterupdateexit.png} 
     			}}%
-    			\caption{Demonstration of automatic adjustments}%
+    			\caption{D3 managing data responsively}%
+	\end{figure}	
+	
+	The simplicity of the D3 library is what makes it so powerful, and it was chosen in this project for that reason. Ideally with an implementation started in d3.js, other researchers can build upon the software with relative ease to continue to create powerful tools. 
+	\par 
+	D3 is not just a great way of creating the scalable vector graphics that we require to enable researchers to look both at the global and local structure of the tSNE plots, but also allows us, with relative ease, to bring more detail to the plots. Coding in text tooltips for example ensure that we meet Tufte's principle on focusing in on detail. 
+	\par 
+	The following images show the tooltips used in the second iteration of the project and the relative ease at which they can be encoded.
+	
+	\begin{figure}[H]
+    			\centering	
+    			\subfloat[Text-tooltips]								{{\includegraphics[width=0.4\textwidth]
+    				{img/tooltip-text-iter2.png} 
+    			}}%
+    			\qquad
+    			\subfloat[Easily adaptabel Tooltip d3.js Code]									{{\includegraphics[width=0.4\textwidth]
+    				{img/tooltip_code.png}
+    			}}%
+    			\caption{ }%
+    			\label{fig:iter2}
 	\end{figure}	
 
+
+	\subsection{Evaluation}
+	In order to retain some consistency, the evaluation methods were retianed the same. Assessing the quality of the product under the three main categories of neural network research usefulness, visualisation quality and implementation quality.
+	\par 
+	This is a screenshot of the complete second iteraction once the cost function has been optimised and the image zoomed in upon. It demonstrate the high-fidelity of the d3.js svg graphic, and shows a marked improvement upon the low fidelity pixelated animations.
+
+	\begin{figure}[H]
+    			\centering												{{\includegraphics[width=10cm]
+    				{img/Iter2_31_28-01.png} 
+    			}}%
+    			\caption{Zoomed in screenshot}%
+	\end{figure}
 	
-	\subsection{Evaluation}	
+	Below are a number of screen shots depicting the final product during the stages of tSNE optimisation over it's cost function given at epoch 20,  Layer 3 for a derivation of the Hinton network but with only 11 Hidden ReLU units in each layer.
+	
+		\begin{figure}[H]
+    			\centering	
+    			\subfloat[]								{{\includegraphics[width=0.15\textwidth]
+    				{img/Iter2_30_53.png} 
+    			}}%
+    			\qquad
+    			\subfloat[]									{{\includegraphics[width=0.15\textwidth]
+    				{img/Iter2_30_59.png}
+    			}}%
+    			 \qquad
+    			\subfloat[]									{{\includegraphics[width=0.15\textwidth]
+    				{img/Iter2_31_12.png} 
+    			}}%
+    			\caption{Screenshots of growth from iteration two}%
+    			\label{fig:iter2}
+	\end{figure}	
+		
 		\subsubsection{Neural Network Perspective}
+		It was widely agreed that this implementation was far superior to the GIF animations. The ability to zoom and interrogate data at different scales was welcomed, and the retention of quality in doing so was also a marked improvement. Also notably the simple use of tooltips to display the actual value of the data, rather than just using colour, was a great addition as it allowed a user to first zoom in on some unlikely data samples and then see which exact data samples were causing the problem.
+		\par 
+		While the product was deemed to be a marked improvement on the previous iteration, there were still an number of changes that clearly needed to be made:
+		\par 
+		The version was criticised for taking too long in the processing of each tSNE plot. This makes it hard for users to flick between layers or epochs in order to start identifying patterns - and violates Edwards Tufte's seventh principle that visualisation should augment short term memory through visual patterns. Here, the patterns emerged too slowly and providing an ineffective means of comparison. The slow result is likely due to the slow performance of the client side optimising of the tSNE function used. 
+		\par 
+		While the tooltips provided a useful way of understanding which points corresponded to which output classification in the range of one to nine, they were ineffective in demonstrating exactly which input values were causing this error. This is something that was addressed in version three.
+		
 		\subsubsection{Visualisation Perspective}
-		\subsubsection{Implementation Perspective}
+		While in the neural network critisism above it's clear to see that there are a number of visualisation improvements that needed to be addressed, there were significant visualisation discoveries made for the authors perspective. Most notably was the use of \textit{D3.js} transitions to smooth over the difference between each step in the iterative refinement of the tSNE plot. These transitions are often used for the 'WOW' factor, however in this instance they provide an important functional use, and allow the eye to easily follow specific points trajectories in space. This is useful in allowing the user to observe anomalies or perfulaiar changes in the data over time.	
+		\par 
+		The introduction of transitions here is significant, and should be used in all future versions to enable easier pattern spotting within the changing data sets, be this between model, epoch or layer.
 					
 \section{Iteration 3: Epochs \& Layers}
 	\subsection{The Product}	
 	
+
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
     				{img/sne_plot_E2_l1.png} 
     			}}%
     			\caption{Epoch 2, Layer 1 from different models}%
+	\end{figure}	
+
+	\begin{figure}[H]
+    			\centering												{{\includegraphics[width=7cm]
+    				{img/d3scales.png} 
+    			}}%
+    			\caption{d3 scaling elements}%
 	\end{figure}	
 
 	\begin{figure}[H]
@@ -1228,14 +1286,7 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
     				{img/SKE-iter3-C.png} 
     			}}%
     			\caption{Wireframe Design}%
-	\end{figure}		
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/LOGO-Angular.png} 
-    			}}%
-    			\caption{}%
-	\end{figure}			
+	\end{figure}				
 	
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
@@ -1280,14 +1331,6 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
     			}}%
     			\caption{Wireframe Design}%
 	\end{figure}	
-
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/LOGO-flask.png} 
-    			}}%
-    			\caption{}%
-	\end{figure}		
-	
 	
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=9cm]
