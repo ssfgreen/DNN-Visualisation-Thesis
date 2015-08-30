@@ -8,7 +8,7 @@
 %\setcounter{tocdepth}{4}
 \setcounter{tocdepth}{2}
 
-\usepackage[margin=2cm]{geometry}  % set the margins to 2cm on all sides
+\usepackage[margin=2.5cm]{geometry}  % set the margins to 2cm on all sides
 \usepackage{graphicx}              % to include figures
 \usepackage{amsmath}               % great math stuff
 \usepackage{amsfonts}              % for blackboard bold, etc
@@ -48,15 +48,19 @@
 \rhead{\fancyplain{}{\today}}
 \cfoot{\fancyplain{}{\thepage}}
 
+\usepackage{setspace}
+
 \usepackage{url}
 
-\title{Visualisation for Information: \\\ Deep Neural Networks \\\ \\\Large{--- Background and Progress Report ---}}
+\title{Visualising \\\ Deep Neural Networks \\\ \\\Large{--- MSc Thesis ---}}
 \author{Sam Green\\
        \small{sg5414@imperial.ac.uk}\\ \\
        \small{Supervisors: Dr William Knottenbelt and Mr Daniel `Jack' Kelly}
 }
 
 \begin{document}
+\onehalfspacing
+
 \maketitle
 
 \clearpage
@@ -296,6 +300,16 @@ There are a number of different neurons used within the layers of an artificial 
 		\par 
 		There is still no clear understanding of why they perform so well or why certain combinations of internal weights and connections enable highly complex tasks, such as computer vision, to be performed. It is due to this lack of understanding that the development of new models falls largely upon a `greedy' trail and error approach to tuning the network parameters. This is unsatisfactorily unscientific, using experience and intuition as the primary guiding factors - making insights hard to replicate.
 		\par
+		
+		\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.3\textwidth]
+    				{img/black_box.png} 
+    			}}%
+    			\caption{Black Box problem}%
+    			\label{fig:BlackBox}
+		\end{figure}	
+		
 		\subsubsection{The Challenges}
 		There are a number of challenges that arise in attempting to change this way of working; firstly, these networks are composed of many functional components, the values of which as individuals and as a whole are not readily understood. In addition, each component of a network may have dozens of hyper-parameters linked to it, every one of which needs to be tuned to attain optimal performance. Finally, exacerbating these issues is that literature hasn't formalised methods for development or discussion, so even experts can only rely on others anecdotal results to guide network design.
 		\par 
@@ -308,6 +322,8 @@ There are a number of different neurons used within the layers of an artificial 
 		\par
 \subsubsection{Existing uses of visualisation}
 	It's important to stress here that this is not a novel idea, and similar projects have been undertaken across a variety of areas within Machine Learning, in the visualisations of the naive-Bayesian network \cite{Becker2001}, decision trees \cite{Ankerst1999}, Support Vector Machines \cite{Caragea2001} and Hidden Markov Models \cite{Dai2008}. Studies have shown that integrating such tools into the learning work flow can in fact produce better results than automated techniques alone \cite{Ware2002}.
+
+\clearpage 
 
 \section{Searching for a Solution}
 	\subsection{Human \& Computer Augmentation}
@@ -370,7 +386,9 @@ Visualisation can help us notice things that were previously hidden. Even when d
 		Visualising quantitative information, such as the data produced by neural networks, typically involves displaying measured quantities, or data, by means of the combined use of points, lines, a coordinate system, numbers, symbols, words, shading, and colour. These visual forms are more rapidly understood and are easier to critique than the information underlying them \cite{DeFanti1989}, \cite{McCormick1987}, \cite{Tufte2001}.
 		\par
 		In a numerical format vast quantities of data can be tedious to process, and often little understanding can be gained from such complex models. Visual data on the other hand communicates to the highly developed visual pattern-recognition capabilities of humans. Indeed, a majority of our brain's activity deals with the processing and analysis of visual images. Images are pre-attentive and are processed before text in the human brain. Several empirical studies show that visual representations are superior to verbal or sequential representations across a number of different tasks; illustrate relations, identify patterns, to present overview and details, to support problem solving and to communicate different knowledge types \cite{Burkhard2004}. As a species we are far better at recognising regularities, anomalies, and trends in images rather than in long lists of numbers \cite{Ware2010}. Consider how difficult is may be to observe both global and local patterns in a list of numbers, in comparison to the relative ease when presented in a standard visualisation model such as a graph.
-	  		 
+		\par 
+		For data mining to be effective, it is important to include the human in the data exploration process and combine the flexibility, creativity and general knowledge of the human with the enormous storage capacity and computation power of computers. Visual data mining techniques have proven to be of high value in exploratory data analysis and they have high potential for exploring large datasets.
+			  		 
   		\begin{figure}[H]
     			\centering	
 			{{\includegraphics[width=0.3\textwidth]
@@ -379,9 +397,7 @@ Visualisation can help us notice things that were previously hidden. Even when d
     			\caption{Ware's "Things that pop-out"}%
     		\label{fig:Ware Pop-Out}
 		\end{figure}
-  		 		
-		\par 
-		For data mining to be effective, it is important to include the human in the data exploration process and combine the flexibility, creativity and general knowledge of the human with the enormous storage capacity and computation power of computers. Visual data mining techniques have proven to be of high value in exploratory data analysis and they have high potential for exploring large datasets.
+		
 		\par 
 		Visual data exploration is especially useful when little is known about the data and the exploration goals are vague - such as when attempting to understand the inner workings of a neural net. Since the user is directly involved in looking at the visualisation, shifting and adjusting the exploration goals of the human eye can be automatically \cite{Keim2002}.
 		\par 
@@ -425,31 +441,31 @@ Visualisation can help us notice things that were previously hidden. Even when d
 		\text{Data-ink ratio} = 
 		\frac{\text{data-ink}}{\text{total ink used to print the graphic}}
 		$$
-		\\\
+
 		\item \textbf{Principle two:}
 		\textit{include visual differences only when required} 
 		\par
 		The human brain has an amazing capability of spotting visual differences such as color, size and position. Often they look for the meaning to change depending on how these visual features and designed. If there is no difference, but embellishments are added, it often leads to confusion.
-		\\\ 
+
 		\item \textbf{Principle tree:}
 		\textit{use visual encodings for quantitative values}
 		\par 
 		Successful examples are: length, for example the length of bar in a bar graph; 2-D location, for example the position of a data point in a scatter plot; size, for example the area in a pie chart; shape, orientation or hue, for example denoting different classes in any graph. All of these are automatically and immediate understood as they have natural properties that humans understand. 
-		\\\
+
 		\item \textbf{Principle four:}
 		\textit{differences in visual properties should correspond to actual differences in the data}
 		\par 
 		Its important to encode differences consistently and not manipulate the visualisation to aid an argument. For example, ensuring that axes are consistent - from zero to some useful value without undergoing any form of distortion.
-		\\\
+
 		\item \textbf{Principle five:}
 		\textit{do not visually connect values that are discrete}
 		\par 
 		In a graph, when you draw lines between discrete values and connect them, people perceive those values as having a relationship to each other, and so this should be avoided.
-		\\\
+
 		\item \textbf{Principle six:} \textit{visually highlight the most important part of your message}
 		\par 
 		All information on a chart might not be equal and it might be possible to direct a users attention to a particular part of the visualization by visually highlighting through use of color, position or another standard encoding.
-		\\\
+
 		\item \textbf{Principle seven:} 
 		\textit{augment short term memory through visual patterns}
 		\par
@@ -564,8 +580,8 @@ Visualisation can help us notice things that were previously hidden. Even when d
 		Again, along with many of these other early visualisation methods, the weakness of the trajectory diagram is its inability to display weight spaces of more than three dimensions. There have been efforts to combine dimensionality visualisation with trajectory diagrams - such as using radially projected axes, however this is fairly unsuccessful \cite{Craven1992}. 
 		\par 
 		
-%\subsubsection{Lascaux}
-\textbf{Lascaux}
+\subsubsection{Lascaux}
+%\textbf{Lascaux}
 		
 	\begin{figure}[H]
     			\centering	
@@ -650,6 +666,8 @@ $ r_{ijo} = w_{ij} \times w_{jo} $, and the relative contribution from each inpu
     			\caption{Overview of visualisation software by Rui Wang}%
     		\label{fig:studentprofile}
 		\end{figure}
+
+\clearpage 
 
 \section{Project Goals}
 	To help guide development during the project a number of goals were identified. Over the course of the project the goals have been refined, new goals have been added and some goals have been dropped.
@@ -736,6 +754,7 @@ The initial goals were:
 	\subsection{Adjusting Expectations}
 	While the majority of the goals stated in the previous session were achieved by the end of the project. Some of these were left partially complete - such as the "Visualise changing parts of the neural network" which while the final product would visualise a neurons activations and these directly influence the weights, biases, error values and accuracy - the product did not directly visualise anything other than those activations, which proved to be sufficiently useful and complex for the time of this project.
 		
+\clearpage
 \section{Data Collection}
 	
 	The task of visualising neural networks primarily has three challenges to address; producing the data, collecting the data and visualising it. 
@@ -968,6 +987,7 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
 		In addition to Sammons mapping described above, \cite{VanderMaaten2009} also sites a number of other non-linear dimensionality reduction techniques that aim to preserve the local structure of data including; \textit{Curvilinear Component Analysis} \cite{Demartines1995}, \textit{Stochastic Neighbour Embedding} \cite{Hinton2002}, \textit{Isomap} \cite{Tenenbaum2000}, \textit{Maximum Variance Unfolding} \cite{Weinberger2004}, \textit{Locally Linear Embedding} \cite{Roweis2000}, \textit{Laplacian Eigenmaps} \cite{Belkin2002}.
 
 		\par 
+		
 		These techniques all perform well with artificial datasets, however are criticised for not being capable of retaining both local and global structure in a single data map. Even semi-supervised variants are not capable of separating simple datasets such as MNIST into it's natural clusters \cite{Song2007}. 
 		\par 
 
@@ -1004,11 +1024,53 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
 			\item By transforming the non-visual information (numerical activation values) into two dimensional points through the tSNE algorithm, we have placed the data in a format that lends itself to classic visualisation in the x-y dimension - a scatterplot. This satisfies Tufte's third principle tapping into the human brains innate ability to understand spatial patterns.
 			\item tSNE also explicitly follows Tufte's fourth principle of good data visualisation that, \textit{differences in visual properties should correspond to actual difference in the data}, by in it's very aim which is to optimise a cost function that aims to preseve the actual differences in the data (here described using metrics such as the L2, or Euclidean, distance).
 		\end{itemize}
-
+		It has been suggested that one reason for the success of neural networks is that they discover optimal representations of the data that allow for more accurate classification \cite{Hinton1986}. Ultimately understanding these better should provide a method to guide the training process that is less situated in trial and error.
+		\par
+		 Importantly, these representations are likely to be distributed \cite{Hinton1986} such that each concept is encoded in the activations of any number of the networks nodes, making understanding these concepts a greater problem than simply understanding the decision surface on singular neurons, but one that requires representations across all nodes.
+	In the input space the network requires a relatively complex line to divide two curves on a plane. However each new layer transforms the spatial data creating a new representation that is easier to classify with a simple hyperplane.
+				
+		\begin{figure}[H]
+    			\centering	
+    			\subfloat[No hidden layer]							{{\includegraphics[width=7cm]
+    				{img/colah_nonwarp.png} 
+    			}}%
+    			\qquad
+    			\subfloat[Hidden Layer]
+    			{{\includegraphics[width=7cm]
+    				{img/colah_warp.png} 
+    			}}%
+    			\caption{Representations that warp the data}%
+		\end{figure}		
+		
+		\par 
+		In order for the data to be transformed to this new representation, it must undergo a sequence of manipulations. A tanh layer for example processing the function $ tanh(Wx + B) $ consists of; 
+		\begin{itemize}
+			\item a linear transformation by the weight matrix $ \bm{W} $
+			\item a translation by the bias vector $ \bm{b} $
+			\item and a point-wise application of the tanh activation function
+		\end{itemize}
+		Intuitively, what is occurring here is a stretching and warping of the space to make it easier to linearly divide and this can be seen above as well. It's important to note however that it does not cut, break or fold the space as it must retain it's `topological' properties \cite{Choi2005}.
+		\par 
+								
+ 		 \begin{figure}[H]
+    			\centering													{{\includegraphics[width=0.6\textwidth]
+    				{img/colah_circle} 
+    				}}
+    			\caption{Three Node Warping}%
+    			\label{fig:studentprofile}
+		\end{figure}
+		
+ 		
+		Another example, is one that cannot be warped simply in two dimensions, but requires a third, such as a circle within a circle:
+		$$ 
+		A = \text{ $ { xld(x,0) < 1/3 } $ }		
+		B = \text{ $ { xl2/3 < d(x,0) < 1 } $ }
+		$$ 
+		It is impossible for a neural network to classify this without having a layer with greater than 3 hidden neurons. The requirement of the network to find a hyperplane that separates $ A $ and $ B $ in some final representation will not be possible no matter how the space is warped - the network requires an extra dimension. Visualisation demonstrates the network struggle to perform this. However, if we add a third  neuron, the problem becomes trivial - with a three dimensional representation of the data. This spatial transformation occurs in even more complex datasets with numerous dimensions \cite{Carlsson2008} such as images. however, while it is less easy to visualise these the intuition is useful and may lead to discovering appropriate ways of showing the same transformations in multi-dimensional space.
 \clearpage
 
-\section{Iteration 1}
-	\subsection{Animation}
+\section{Iteration 1 - Animation}
+	\subsection{Introduction}
 	Reducing the dimensionality of our data is in itself not enough. 
 	\par 
 	While it is possible to simply plot as much of the data as possible, the sheer quantities of tSNE plots would quickly put us back in the first positions - being unable to compare data due to information overload, potentially requiring us to reapply tSNE. 
@@ -1087,11 +1149,29 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
 		
 \clearpage 
 
-\section{Iteration 2}
-	\subsection{Online and interactive}
+\section{Iteration 2 - Online \& interactive}
+	\subsection{Introduction}
 	In response to the points highlighted by the first design iteration, the second iteration focussed on placing as much of the process online and therefore should enable the much required interactive element of the product. 
+	
+	\begin{figure}[H]
+    			\centering	
+    			\subfloat[]								{{\includegraphics[width=0.2\textwidth]
+    				{img/Iter2_30_53.png} 
+    			}}%
+    			\qquad
+    			\subfloat[]									{{\includegraphics[width=0.2\textwidth]
+    				{img/Iter2_30_59.png}
+    			}}%
+    			 \qquad
+    			\subfloat[]									{{\includegraphics[width=0.2\textwidth]
+    				{img/Iter2_31_12.png} 
+    			}}%
+    			\caption{Screenshots of growth from iteration two}%
+    			\label{fig:iter2}
+	\end{figure}	
+	
 	\par 
-	It's useful once again to to situate the project in the realm of Edward Tufte's visualisation principles so that we can assess the success of this new proposal that seeks to be interactive and online, and therefore also enabling the use of JavaScript and thus interactivity. In addition to all of the previous Tufte rules that we have successfullly achieved, there comes two more by bringing the data online. 
+	It's useful once again to to situate the project in the realm of Edward Tufte's visualisation principles so that we can assess the success of this new proposal that seeks to be interactive and online, and therefore also enabling the use of JavaScript and thus interactivity. In addition to all of the previous Tufte rules that we have successfully achieved, there comes two more by bringing the data online. 
 	\begin{itemize}
 		\item Through the use of a common interactive concept for the web \textit{tooltips}, which is simply text that hovers above the object that the mouse is focusing upon at any one moment in time, we can satisfy Tufte's sixth principle to \textit{visually highlight your message}. 
 		\item In addition, where previously in the animations there was no way to dig into the data without decreasing quality cause by poor pixel representations - the capability of the browser to handle \textit{Scalable Vector Graphics, SVGs} enables the researcher to zoom in on the large data sets to observe the local structure captured by tSNE, and to zoom out observing the global structure. This coincidently allows us to achieve another one of Tufte's principles of quality visualisation" \textit{Reveal the data at several levels of detail}. 
@@ -1217,22 +1297,6 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
 	
 	Below are a number of screen shots depicting the final product during the stages of tSNE optimisation over it's cost function given at epoch 20,  Layer 3 for a derivation of the Hinton network but with only 11 Hidden ReLU units in each layer.
 	
-		\begin{figure}[H]
-    			\centering	
-    			\subfloat[]								{{\includegraphics[width=0.15\textwidth]
-    				{img/Iter2_30_53.png} 
-    			}}%
-    			\qquad
-    			\subfloat[]									{{\includegraphics[width=0.15\textwidth]
-    				{img/Iter2_30_59.png}
-    			}}%
-    			 \qquad
-    			\subfloat[]									{{\includegraphics[width=0.15\textwidth]
-    				{img/Iter2_31_12.png} 
-    			}}%
-    			\caption{Screenshots of growth from iteration two}%
-    			\label{fig:iter2}
-	\end{figure}	
 		
 		\subsubsection{Neural Network Perspective}
 		It was widely agreed that this implementation was far superior to the GIF animations. The ability to zoom and interrogate data at different scales was welcomed, and the retention of quality in doing so was also a marked improvement. Also notably the simple use of tooltips to display the actual value of the data, rather than just using colour, was a great addition as it allowed a user to first zoom in on some unlikely data samples and then see which exact data samples were causing the problem.
@@ -1247,53 +1311,95 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
 		While in the neural network critisism above it's clear to see that there are a number of visualisation improvements that needed to be addressed, there were significant visualisation discoveries made for the authors perspective. Most notably was the use of \textit{D3.js} transitions to smooth over the difference between each step in the iterative refinement of the tSNE plot. These transitions are often used for the 'WOW' factor, however in this instance they provide an important functional use, and allow the eye to easily follow specific points trajectories in space. This is useful in allowing the user to observe anomalies or perfulaiar changes in the data over time.	
 		\par 
 		The introduction of transitions here is significant, and should be used in all future versions to enable easier pattern spotting within the changing data sets, be this between model, epoch or layer.
-					
-\section{Iteration 3: Epochs \& Layers}
-	\subsection{The Product}	
 	
 
+\clearpage 
+				
+\section{Iteration 3 - Epochs \& Layers}
+	\subsection{Introduction}
+	There were a number of issues that needed to be addressed in response to the feedback from the previous iteration, and also upon considering the implementation there were some blatant improvements that could quickly be made that could help streamline the project as a whole. 
+	\par 
+	Where the previous iteration focussed on the tSNE optimisation of a single activation output from a specific model, epoch and layer, the new construction would select a model and demo pre-calculated tSNE plots  with a user interface that enables the researcher to quickly analyse the differences between layers visually.
+	\par 
+	This allows researchers to answer a number of questions very rapidly, observing changes across layers demonstrates if the backpropogation algorithm is successfully penetrating all layers and producing transformations in the weight layers. Observing changes across epoch demonstrates whether these layers are learning over time, or if they are simply arbitarity mapping the data. 
+	\par 
+		
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
     				{img/sne_plot_E2_l1.png} 
     			}}%
     			\caption{Epoch 2, Layer 1 from different models}%
 	\end{figure}	
-
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/d3scales.png} 
-    			}}%
-    			\caption{d3 scaling elements}%
-	\end{figure}	
-
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/tooltip-text-iter3.png} 
-    			}}%
-    			\caption{Tooltips}%
-	\end{figure}	
 	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/SKE-iter3-D.png} 
-    			}}%
-    			\caption{Wireframe Design}%
-	\end{figure}	
-
+	In addition being able to hover over the points in the D3.js plot to show the tooltip of specific numbers allows the researcher to follow which numbers are being confused with which others - indicating that perhaps in their training set they should include more rotated sevens to allow the network to properly distinguish them from nines. 
+	\par 
+	In essence, by plotting the graphs across the epochs and layers within one experiment there is a vast amount of information that can be gleaned from these plots.
+	
+	\subsection{Design}	
+	There were a number of important design considerations for this iteration. This fell primarily into two parts; control and display.
+	\par 
+	Once users had chosen their model, there needed to be an user interface element that would allow researchers to quickly change from one epoch or layer to the next. A number of different methods were tried using Angular.js including sliders, check-boxes and dropdown menues. However while these all failed to unify the transition that was occurring, by which I mean they failed to highlight where exactly a layer-epoch combination sit with respect to any other layer-epoch combination. 
+	\par 
+	Coincidentally the best method found was to use another d3.js implemented scatter plot that would show exactly all the points that had been plotted, and so a researcher could quicly get an overview of the data as well as switch between different layer-epoch combinations simply by moving the mouse. 
+	\par 
+	This allows users to see exactly how far along the progression for that particular model changed, and the events leading up to this - be them at an epoch or layer scale.  
 
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
     				{img/SKE-iter3-C.png} 
     			}}%
     			\caption{Wireframe Design}%
-	\end{figure}				
+	\end{figure}	
 	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
+	In addition to the control block was the display; the section where the actual tSNE, or by this point Barnes Hut SNE (a faster version), was plotted. This section is the real information that reveals the insights, and the transitions from layer to epoch became exatly that - d3.js transitions. 
+	\par 
+	D3.js has a useful ability to transition from one representation of a data point (or datum) to another via a number of rendered transition states. This allows the human eye to follow how specific points move with ease, and enables us to re-enact more of Tufte's guiding visualisation principles to \textit{augment short-term memory loss with visual patterns} - here the transitions literally allow us to follow specific datapoints as they move across the screen.
+	\par 
+
+	
+		\begin{figure}[H]
+    			\centering	
+    			\subfloat[Barnes Hut SNE after applying to the imagified scatterplots]								{{\includegraphics[width=0.3\textwidth]
     				{img/d3Transitions.png} 
     			}}%
-    			\caption{simple d3 Transitions}%
-	\end{figure}		
+    			\qquad
+    			\subfloat[Barnes Hut SNE after applying Principle Components Analysis]									{{\includegraphics[width=0.4\textwidth]
+    				{img/SKE-iter3-D.png} 
+    			}}%
+    			\caption{}%
+    			\label{fig:epoch_layer}
+	\end{figure}
+	
+	Another important element to notice in comparison to the initial iteration where essentially static images were used, is that here when the image is no longer static the axis are no longer relevant.
+	\par 
+	It's possible to argue that axis were never relevant due to the lack of units, but they did represent differing degrees of spatial distrubition. Here it's important the all of the images are presented in the same axis across the data so that patterns can be more easily spotted. 
+	\par 
+	D3.js has yet another very useful tool \texttt{d3.scale.linear} which essentially normalises the data within the visual range on the screen. Mapping the input domain to the output range, and thus fitting the data.
+	\begin{figure}[H]
+    			\centering												{{\includegraphics[width=7cm]
+    				{img/d3scales.png} 
+    			}}%
+    			\caption{d3 scaling elements}%
+	\end{figure}	
+		
+	\subsection{Architecture}
+	
+	\subsubsection{Entirely Python}
+	Iteration one was implemented in a lightweight way with relatively little RESTful API use. Iteration two performed the interaction using a Node.js server to keep the entire toolkit in JavaScript - supposidly ensuring the neatness of the project. 
+	\par 
+	In iteration three however, the node.js and express.js backend components were replaced with a python \textit{Flask} which is a \textit{Sinatra-like} micro web application framework written entirely in Python for the use in major web applications. The framework is used by companies such as Pinterest and LinkedIn and serves as a far more appropriate product for the backend in this project as well.
+	\par 
+	The entire architecture has now been streamlined with Python entirely in the back end; from the neural network, to the database, to the RESTful server and post-processing functionality. The entire front end is JavaScript using Angular.js for basic manipulation of the DOM and d3.js for the interactive visualisations.
+	\par 
+	
+	\subsubsection{Streamlined Database}
+	In addition to the restructuring of the architecture to have a clearer divide between backend Python and frontend JavaScript - the Mongo database is now interacted with using a python toolkit \texttt{PyMongo}. 
+	\par 
+	This opporunity allowed a streamlining of the database structure as well, from the model represented in the ER schema at the beginning of the report to the following, perhaps slighlty clumsier, however far easier to interact with JSON storage format.
+	\par 
+	This new database schema stores the most important parameters for understanding the neural network, as well as the key data required for the visualisations.
+	
+	\textbf{TODO}: adjust this to fit this third iteration, the fourth iteration is where the PCA and META SNE come in.
 	
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=9cm]
@@ -1302,69 +1408,158 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
     			\caption{Final Simplified JSON scheme for PyMongo}%
 	\end{figure}
 	
+	\subsubsection{Tooltip Adaptation}
+	Another small change made, was to highlight the text tooltips by adding a fill to the background enabling the text to popout - where previously the numbers where occasionally obscured.
+	\par 
 	
+	\begin{figure}[H]
+    			\centering												{{\includegraphics[width=5cm]
+    				{img/tooltip-text-iter3.png} 
+    			}}%
+    			\caption{Tooltips}%
+	\end{figure}	
 	
-	\subsection{Analysis: Neural Network Response}
-	\subsection{Analysis: Visualisation Response}
-	\subsection{Analysis: Implementation Response}
-	
-\section{Iteration 4: metaSNE \& Image tooltips}
-	\subsection{The Product}
+	In addition to enhancing the text tooltip visibility, it was felt that a higher fidelity approach which allowed one to explore not just the classification of points better, but to understand which input pieces of data these represented. 
+	\par 
+	Initially the attempt involved trying a number of options uploading the \texttt{.png} images of the MNIST dataset to be rendered each time the user hovered over a point. This however was slow and constrasted to the tight apporach of the d3.js application. 
 	
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
     				{img/tooltip-image-iter3.png} 
     			}}%
     			\caption{Tooltips}%
-	\end{figure}		
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/SKE-iter3-E.png} 
-    			}}%
-    			\caption{Wireframe Design}%
-	\end{figure}	
-		
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/SKE-iter3-B.png} 
-    			}}%
-    			\caption{Wireframe Design}%
 	\end{figure}	
 	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=9cm]
-    				{img/2d_historgram_tsne.png} 
-    			}}%
-    			\caption{Imagifying Scatterplots}%
-	\end{figure}	
+	\par 
+	After some unsatisfactory attempts and exploration of other methods, the method used in the Chris Olah blog post \cite{Olah2014d} was discovered. It took a substantial amount of time to work out how the implementation worked, however it simply used the same \texttt{base64} arrays that had been used previously to store the MNIST dataset in the Mongo database. 
+	\par 
+	Olahs method used the \textit{HTML5 Canvas} to render the points in the browser after uploading the entire dataset in one long \textit{base64} array. The length of the input (784pixels) was used to index the array and render it live using a combination of d3.js and HTML5 canvas.
+	\par 
+	While it was possible to utilise some of my previous implementation alongside Olahs, it was decided to simply adapt the version produced by Olah and build upon it to save time and not \textit{reinvent the wheel}.	
+	\par 
+	In addition to these changes a number of other changes were required in the implementation of connecting to the RESTful API, and an interaction class was built that should ensure the easy adaptation for different purposes by researchers with different goals to those used in this project.
 	
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=17cm]
-    				{img/all_combined-01.png} 
-    			}}%
-    			\caption{UML, ER, Scheme diagram hybrid}%
-	\end{figure}	
+	\subsection{Evaluation}
+	Below are two final screenshots from this third iteration of the product. 
 	
 	
 	\begin{figure}[H]
     			\centering	
-    			\subfloat[Barnes Hut SNE after applying to the imagified scatterplots]								{{\includegraphics[width=0.3\textwidth]
-    				{img/BHafter2d.png} 
+    			\subfloat[]								{{\includegraphics[width=0.45\textwidth]
+    				{img/layer_epoch.png} 
     			}}%
     			\qquad
-    			\subfloat[Barnes Hut SNE after applying Principle Components Analysis]									{{\includegraphics[width=0.3\textwidth]
-    				{img/BHafterPCAOnly.png} 
+    			\subfloat[]									{{\includegraphics[width=0.45\textwidth]
+    				{img/layer_epoch2.png} 
     			}}%
-    			 \qquad
-    			\subfloat[Barnes Hut SNE after applying Principle Components Analysis, and Varimax Orthogonalisation]									{{\includegraphics[width=0.3\textwidth]
-    				{img/BHrotations.png} 
+
+    			\caption{}%
+    			\label{fig:pca_varimax}
+	\end{figure}
+	
+	
+		\subsubsection{Neural Network Response}
+		There are several advantage of this method in comparison to the previous. Where the previous helped users understand the how the data is clustered using the tSNE algorithm, this new method is a vast improvement in analysing the data for the purpose of understanding what these networks are doing.
+		\par 
+		The ability for researchers to quickly compare changes across epoch allows them to identify data-points that are constantly failing to be captured. This representations created are demonstrated in the tSNE plots, and those that cluster more effectively are the networks that
+		\par 
+		The d3.js transitions that were used previously to highlight the changes between iterations in the optimisation of the tSNE cost function. Here however the transitions were used to enable the viewer to observe the translation of a datapoint from one position to another within the tSNE visualisation of the network representation at a given layer and epoch in a specific model.
+		\par 
+		After observing however that several of the tSNE plots appeared to simply be rotations of one another it was questioned whether researchers would accurately be able to diagnose which changes were the neural network actually learning, and which were simply transfomations of the space in which no benefit actually occurs. For this reason, suggested improvements would be ensure that it was possible to identify which of the tSNE representations of the data were transformations of one another.
+		\subsubsection{Visualisation Response}
+		The key visual changes here were the introduction of transitions between layers and epochs enabling the user to observe patterns more accurately, and in addition ensuring that Edward Tufte's guide was still being followed.
+		\par 
+		The other major change was the introduction of the image tooltip. Previously the text-tooltip enabled the researcher to view the classification result to the accuracy of the output layer, however here each datapoint directly corresponds to one of the input values, each of which is visually rendered in the browser. This adaptation of Chris Olahs blog post provides a much needed fidelity within the project.		
+	\subsubsection{Implementation Response}
+	There were a number of significant implementation changes in iteration three; a more streamlined database, a properly separated Python backend and JavaScript frontend, and the introduction of an adapted version of Chris Olahs \cite{Olah2014c} d3.js code that includes the image tool-tips.
+		
+	\begin{figure}[H]
+    			\centering												{{\includegraphics[width=7cm]
+    				{img/d3_visualisations-01.png} 
+    			}}%
+    			\caption{UML, ER, Scheme diagram hybrid}%
+	\end{figure}	
+	
+	\par 
+	The streamlined database ensures that researchers can easily interact with the product. The distinctive front and backends ensures that they can be used independently of one another. And the adapted and improved visualisation infrastructure ensures that it is easier for researchers to interact with.
+	
+	
+\section{Iteration 4: metaSNE \& Principle Component Analysis}
+	
+	\subsection{Introduction}
+	While the previous iteration was a fairly successful implementation as it allowed researchers to actually observe at both a finegrain detail of misclassified datapoints as well as providing an overview of the experiment as a whole by enabling the researcher to browse by epoch and layer, the challenge of identifying changes because of rotational data was problematic.
+	\par 
+	The main focus in this section is the exploration of principle component analysis as a method for enabling the researcher to perceive rotational data more clearly. 
+	\par 
+	However this process can be quite mathematically complex, and can be approximated instead by using a combination of Principle Component Analysis (PCA) and Varimax Rotation to orthogonalise the data. 	
+	\par 
+
+	\subsubsection{Isometries in Representations}
+	Many datasets have rotational duplicates appearing across them, and in data science \& mathematics this is a common problem. Where a representation contains a transofmration in the \textit{Euclidean} space, these transformations are often called \textit{Isometries} and are transformations such as rotation or flipping. 
+	\par 
+	In the tSNE plots that visualise the representations being formed by the neural networks it's important to distunguish which plots demonstrate new pieces of information being learnt, or are they simply just translations across the Eucliean space - where by nothing really has been learnt.
+	\par 
+	In his blog post on \textit{Representations} \cite{Olah2014} explores this notion of Isometries stating that for any representation $ X $ there is an associated metric function, $ d_{x} $, which gives us the distance between pairs of points within that representation. For another representation $ Y $, $ d_{x} = d_{y} $ if and only if $ X $ is isometric to $ Y $. This is exactly the form with removal of isometries required.
+		\par 
+		The issue with $ d_{x} $ however is that it is a function on a very high-dimensional continuous space, caused by the need to consider the distance between functions as infinite dimension vectors.
+		 
+		$$
+		D_X = \left[\begin{array}{cccc} 
+		  d_X(x_0, x_0) & d_X(x_1, x_0) & d_X(x_2, x_0) & ... \\
+		  d_X(x_0, x_1) & d_X(x_1, x_1) & d_X(x_2, x_1) & ... \\
+		  d_X(x_0, x_2) & d_X(x_1, x_2) & d_X(x_2, x_2) & ... \\
+		  ... & ... & ... & ... \\ 
+		\end{array} \right]
+		$$
+		
+		This transformation into metric space can be incredibly complex, so the approach taken instead approximates the method above by using \textit{Principle Component Analysis} and \textit{Varimax Rotation} to orthogonalise the PCA mappings.
+		
+		\begin{figure}[H]
+    			\centering												{{\includegraphics[width=0.4\textwidth]
+    				{img/sne_plot_E2_L1_rotation.png} 
+    			}}%
+    			\qquad
+    			{{\includegraphics[width=0.4\textwidth]
+    				{img/sne_plot_E2_L3_rotation.png} 
+    			}}%
+    			\caption{Experiment where between two layers the data has essentially just been flipped - demonstrating nothing particulalry new has been learnt}%
+		\end{figure}
+
+	\subsection{Design}
+	The fourth iteration of this project is where the development ends. There are still improvements that can be made which can be made, and will be discussed in the concluding section, however by this point there is certainly a tool that can be utilised to make important decisions. 
+	\par 
+	There are five key components to this final selection that is hopefully incredibly straightforward to use:
+	\begin{itemize}
+		\item First, the neural networks themselves: two neural networks are provided with the tool, a convolutional network and a feedforward network as described in the introduction. These two classes are easily adaptable under the \textit{Lasagne} guidelines.
+		\item Second, the saving functionality afforded by \textit{PyMongo} and the \textit{MongoDB} database that saves key data in an easily accessible format to a local database.
+		\item Third, the post-processing functionality that provides the PCA / meta-SNE plotting explained in this chapter. 
+		\item Fourth, the RESTful API providing data to the client.
+		\item Fifth, the front end \textit{Angular.js} and \textit{D3.js} application consisting of an easy to use hopepage where the user can select the model they want to explore, and the visualisation pages where the user can interrogate their data.
+	\end{itemize}
+	
+	Below are two sketch diagrams that demonstrate the simplicity of the front end.
+	
+		\begin{figure}[H]
+    			\centering	
+    			\subfloat[Homepage]								{{\includegraphics[width=0.4\textwidth]
+    				{img/SKE-iter3-E.png} 
+    			}}%
+    			\qquad
+    			\subfloat[PCA interaction]									{{\includegraphics[width=0.4\textwidth]
+    				{img/SKE-iter3-B.png} 
     			}}%
     			\caption{}%
     			\label{fig:pca_varimax}
 	\end{figure}
 	
+	\subsection{Architecture}
+	The final architecture has a number of components as were described in the previous design section; however the addition of the Principle Component Analysis post-processing is explored below. 
+	\par 
+	
+	\subsubsection{PCA Post-Processing}
+	In order to determine which techniques worked, or did not work, for better displaying those plots that were isometries of one another - or were very similar under a number of mathematical criteria - the following experiment was undertaken that compared three alternative approaches upon a test set that could prove the success or failure of each of the methods.
+	\par 
+		
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
     				{img/rotatedDataOriginal.png} 
@@ -1372,6 +1567,39 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
     			\caption{The test dataset}%
 	\end{figure}	
 	
+	The test set, above, was a number of uniformly generated $x$ and $y$ points that when plotted produced a dataset that consisted of two identical triangles that had been rotated by differing amounts, and three idential squares that had likewise been rotated by differing degrees with differing offsets.
+	\par 
+	The three different approaches were used in an attempt to generate an effective \textit{metaSNE} plot, such that plots which were most similar when disallowing Isometry data to influence difference. The following methods tested were as follows:
+	\\\
+	\\\
+	\textbf{Image Compression}
+	\par
+	The first method took influence from the tSNE plots of the MNIST dataset where each of the 28 pixel by 28 pixel images were had their dimensions collapsed into a single 784 pixel array before the tSNE algorithm is implemented upon it.
+	\par 
+	With the scatterplots, in order to do this, the (x, y) coordinates needed to first be transformed into an image with discrete dimensions. For example, a 500 pixel by 500 pixel image. 
+	\par 
+	There were a number of different methods that could have been employed in order to do this, however the method adopted was to create a two dimensional histogram that were a point to appear within a given coordinate bin, then that bin would be assigned the average of all points situated within it. 
+	\par 
+	\begin{figure}[H]
+    			\centering												{{\includegraphics[width=12cm]
+    				{img/2d_historgram_tsne.png} 
+    			}}%
+    			\caption{Imagifying Scatterplots}%
+	\end{figure}	
+	
+	As can be seen from the figure above this works for the most part due to the relatively high-fidelity of the selected dimensions. However, where two or three points are situated very close together - such as can be seen once or twice below - the transformation taking an average distorts the dataset somewhat. 
+\\\
+\\\
+	\textbf{Principle Component Analysis}
+	\par
+	The second method attempted was to first apply a Principle Component Analysis, PCA, transformation to the scatterplot in an attempt to remove the majority of the rotational differences. 
+	\par 
+	PCA is a statistical procedure that converts the set of points along a number of principle compoents. The largest principle component has the largest possible variablity in the data, and each succeeding component has the highest variance possible under the constraint of those preceeding it.
+	\par 
+	This mapping of plots along it's principle components should remove the majority of rotational data held within the plots, and clearly works as is demonstrated in the plot below on the left.
+	\par 
+	This second method was far more successful than the first in accurately distinguishing the differences and similarities in the original dataset once plotted, however upon application of tSNE the points were indistunguishably plotted.
+	\\\
 		\begin{figure}[H]
     			\centering	
     			\subfloat[Application of Principle Component Analysis]							{{\includegraphics[width=0.3\textwidth]
@@ -1384,326 +1612,210 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
     			\caption{}%
     			\label{fig:varimax}
 	\end{figure}
-	
+
+	\textbf{PCA \& Varimax Rotation}
+	\par
+	After the unsatisfactory results produced by the PCA process, it was decided that the datasets needed to be simpler for the tSNE algorithm to calculate. 
+	\par 
+	After much searching, a solution presented itself in the form of \textit{Varimax Rotation} \cite{Lin2012} which orthogonalises the data such that the actual coordinate system is unchanged, but the orthogonal basis that is being rotated is aligned with those coordinates. This produced the plot on the right which aligned the test set perfectly into it's original triangles and square being centred directly on top of one another - thus removing the isometric data we wanted to remove.
+	\par 
+	The plot below demonstrates on the left the Barnes Hut SNE output when applied simply to the PCA rotated data, and the plot on the left after the data has occured the Varimax Rotation as well - the former fails to accurately represent any of the data as similar, but rotations of one another, while the latter does exactly as desired - separating the squares from the triangles, and demonstrating that they are simply slight variations of one another.
+
 	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/d3_visualisations-01.png} 
+    			\centering	
+    			\subfloat[Barnes Hut SNE after applying Principle Components Analysis]									{{\includegraphics[width=0.23\textwidth]
+    				{img/BHafterPCAOnly.png} 
     			}}%
-    			\caption{UML, ER, Scheme diagram hybrid}%
-	\end{figure}	
+    			 \qquad
+    			\subfloat[Barnes Hut SNE after applying Principle Components Analysis, and Varimax Orthogonalisation]									{{\includegraphics[width=0.23\textwidth]
+    				{img/BHrotations.png} 
+    			}}%
+    			\caption{}%
+    			\label{fig:pca_varimax}
+	\end{figure}
+
+
+	It is this final version: PCA and Varimax Rotation that is used in the final tool to enable researchers to get a better grasp upon how similar these scatterplot really are.
 	
-		
+	\subsubsection{A tool for visualising neural networks}
+	The final architecture for the project remains very similar to that of the previous iteration. 
+	\par 
+	The	diagram below explains the interconnection between the various parts:
+	\begin{itemize}
+		\item \textbf{Server Side}
+			\par 
+			Three components:
+			\begin{itemize}
+				\item The network experiment selection, and visualisation selection
+				\item The browse by animation section
+				\item The interactive section where the researcher can explore by Epoch, Layer, PCA/Varimax centred, or pure meta-SNE (tSNE applied directly to tSNE).
+			\end{itemize}
+		\item \textbf{RESTful API}	
+			\par 
+			The Flask Restful API enables the information on the server side to remain hidden until needed. It also ensures the site can load quickly without having to upload vast amounts of neural network data. 
+		\item \textbf{Server Side}
+			The server side has two primary components: the database and the neural network processing elements. The neural network processing however is split into a further three parts:
+			\begin{itemize}
+				\item The Neural Networks themselves which can be called from the network automation section.
+				\item The helper functions which facilitate the extraction of data from the neural network and store it appropriately
+				\item The post-processing unit which extracts from the database all stored tSNE plots, and processes them to produce a meta-SNE plot and PCA/Varimax plots.
+			\end{itemize}
+	\end{itemize}
+	
 	\begin{figure}[H]
     			\centering												{{\includegraphics[width=7cm]
     				{img/Flow_diagram-01.png} 
     			}}%
     			\caption{The architecture behind the whole system}%
 	\end{figure}	
-	
-	
-	\subsection{Analysis: Neural Network Response}
-	
-\section{Conclusions and Future Work}
-	\subsection{Expanding the Automatic Neural Network}		
-	\subsection{Widening the Visualisation Toolbox}
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/SKE-iter3-A.png} 
-    			}}%
-    			\caption{Wireframe Design}%
-	\end{figure}	
-	
-	\begin{figure}[H]
-    			\centering												{{\includegraphics[width=7cm]
-    				{img/SKE-iter3.png} 
-    			}}%
-    			\caption{Wireframe Design}%
-	\end{figure}	
-	
-	\subsection{Using different Visualisation UI techniques}	
-	\subsection{Adapting an API for other Neural Network Packages}
-	
-\section{Structure}
-	\textbf{Which Section}
-	\textbf{Question / Implementation Goal}
-	\textbf{My Solution / Design}
-	\textbf{What did I need to Explore}
-	\textbf{Theory or Software}
-	\textbf{What did I try, Implementation}
-	\textbf{How successful / unsuccessful was it? - pro's, con's, comparison}
-	\textbf{Significance to main goal}
-	\textbf{Outcome of the exploration, and significant questions left to answer}
-	\textbf{What to explore next?}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Progress Summary}
-	\subsection{Investigation and Data Collection}
-		\subsubsection{Survey}
-		Deep Neural Networks sometimes contain hundreds of parameters which one can tweak, and a vast array of elements that may be added or subtracted from the standard network architectures described earlier.
-		\par 
-		While it would be great to visualise everything in this project - unfortunately this isn't feasible, and so in order to establish which areas to start on, a survey has been created to distribute amongst the vast deep learning community. 
-		\par 
-		There are three components to the survey:
-		\begin{itemize}
-			\item \textbf{Working Environment:}
-		In order to assess which areas would be most effective in terms of increasing efficiency of work, the aim is to find out which broad areas of working with DNNs take up most time.
-		\par 
-		To ensure that any tools developed throughout this project are suitable to both the academic and practitioner communities, the survey aims to find out which packages and languages people are most familiar with.
-			\item \textbf{Training Methods}
-		In order to develop visualisations that are immediately useful, the survey aims to find out what the most frustrating problems are for the researcher, and to avoid duplication of what exists already - ask if they have found effective solutions to these problems.
-		\par
-		Two other questions aim to diagnose which parameters are \textit{A} most important to producing a working network, and \textit{B} most commonly tweaked.
-			\item \textbf{Visualisation}
-		The section begins by showing five images of DNNs being visualised in a variety of different ways, with the aim of clarifying any misunderstandings about what it means to visualise these networks. As a bonus, the survey uses these to deduce which appear to be most useful - each is in it's own distinct category of visualisation.
-		\par 
-		Having established what visualisations may be possible, the survey continues to ask more focussed questions aimed at understanding if people have had prior experience with visualisation, where and why they think they would use it, and how they would like to interact with it if such a thing existed. This information is both explicitly asked for an implicitly deduced by a series of free-text and selection questions.
-		
-		\end{itemize}
-		\par
-		
-
-	
-	\subsection{ANN Visualisation: Representations}
-		
-		\subsubsection{Overview}
-		Dimensionality reduction techniques provide useful tools for visualising data with greater than three dimensions - most neural networks. As seen above, they allow the user to explore both global and local patterns within their data visually, providing perhaps previously unseen insights into their data-set and in it's manipulations. 
-		\par 	
-		The structure that dimensionality reduction tries to preserve when translating to two, or three, dimensional space can be seen as a higher-order \textit{representation} of the data. It has been suggested that one reason for the success of neural networks is that they discover optimal representations of the data that allow for more accurate classification \cite{Hinton1986}. Therefore exploring these representations from a visual perspective might help researchers inspected and explore this space and it's here that they are likely to see which features are contributing to the learning, which intermediate concepts - such as higher-level features - are being created by the hidden layers. Importantly, these representations are likely to be distributed \cite{Hinton1986} such that each concept is encoded in the activations of any number of the networks nodes, making understanding these concepts a greater problem than simply understanding the decision surface on singular neurons, but one that requires representations across all nodes. Ultimately understanding these better should provide a method to guide the training process that is less situated in trial and error.
-		\par 
-		
-		\subsubsection{Space Transformation}
-	 	Representations are created to perform easier classification in the latter stages of a neural network. In order for the a network to classify the points as belonging to either one or the other it must seek to find a linear separation of the two \cite{Olah2014a}. 
-		\par 
-		In the input space the network requires a relatively complex line to divide two curves on a plane. However each new layer transforms the spatial data creating a new representation that is easier to classify with a simple hyperplane.
 				
-		\begin{figure}[H]
-    			\centering	
-    			\subfloat[No hidden layer]							{{\includegraphics[width=7cm]
-    				{img/colah_nonwarp.png} 
+				
+	\begin{figure}[H]
+    			\centering												{{\includegraphics[width=14cm]
+    				{img/all_combined-01.png} 
     			}}%
-    			\qquad
-    			\subfloat[Hidden Layer]
-    			{{\includegraphics[width=7cm]
-    				{img/colah_warp.png} 
-    			}}%
-    			\caption{Representations that warp the data}%
-		\end{figure}		
-		
-		\par 
-		In order for the data to be transformed to this new representation, it must undergo a sequence of manipulations. A tanh layer for example processing the function $ tanh(Wx + B) $ consists of; 
-		\begin{itemize}
-			\item a linear transformation by the weight matrix $ \bm{W} $
-			\item a translation by the bias vector $ \bm{b} $
-			\item and a point-wise application of the tanh activation function
-		\end{itemize}
-		Intuitively, what is occurring here is a stretching and warping of the space to make it easier to linearly divide and this can be seen above as well. It's important to note however that it does not cut, break or fold the space as it must retain it's `topological' properties \cite{Choi2005}.
-		\par 
-								
- 		 \begin{figure}[H]
-    			\centering													{{\includegraphics[width=0.6\textwidth]
-    				{img/colah_circle} 
-    				}}
-    			\caption{Three Node Warping}%
-    			\label{fig:studentprofile}
-		\end{figure}
-		
- 		
-		Another example, is one that cannot be warped simply in two dimensions, but requires a third, such as a circle within a circle:
-		$$ 
-		A = \text{ $ { xld(x,0) < 1/3 } $ }		
-		B = \text{ $ { xl2/3 < d(x,0) < 1 } $ }
-		$$ 
-		It is impossible for a neural network to classify this without having a layer with greater than 3 hidden neurons. The requirement of the network to find a hyperplane that separates $ A $ and $ B $ in some final representation will not be possible no matter how the space is warped - the network requires an extra dimension. Visualisation demonstrates the network struggle to perform this. However, if we add a third  neuron, the problem becomes trivial - with a three dimensional representation of the data. This spatial transformation occurs in even more complex datasets with numerous dimensions \cite{Carlsson2008} such as images. however, while it is less easy to visualise these the intuition is useful and may lead to discovering appropriate ways of showing the same transformations in multi-dimensional space.
-		\par 
-
-		\subsubsection{Representation of word embeddings}
- 		
- 		 \begin{figure}[H]
-    			\centering																			{{\includegraphics[width=0.6\textwidth]
-    				{img/bardent_pca.png} 
-    				}}
-    			\caption{}%
-    			\label{fig:pca}
-		\end{figure}
-		
- 		
-		A word embedding $ \bm{W : words \rightarrow \mathbb{R}^{n}} $ is a parametrized function that maps words to high-dimensional vectors \cite{Bengio2003}. If these are then passed through a learned representation $ \mathbb{R} $ of word-space we can classify the words.  		
-		\par 
-		In a word-embedding when you switch a word for its synonym or for another within its class - ``a few people sing well" versus ``a couple of people sing badly" - then while it appears the input has changed a lot, if $ \bm{W} $ maps synonyms (few $\rightarrow$ couple) and classes (well $\rightarrow$ badly) close together, then from the perspective in the representation $ \mathbb{R} $ very little actually changes.
-		\par 
-
- 		 \begin{figure}[H]
-    			\centering																			{{\includegraphics[width=0.6\textwidth]
-    				{img/colah_word_embeddings.png} 
-    				}}
-    			\caption{}%
-    			\label{fig:words}
-		\end{figure}
-		
-		One way to get a feel for this word embedding is by using t-SNE to visualise the data. This displays words that are similar close together. The words appear to have have a physical representation - here analogies between words are encoded in the vector difference between words \cite{Olah2014c}, for example:
-		$$
-		W(``woman") - W(``man") \simeq W(``aunt") - W(``uncle") \simeq W(``queen") - W(``king")
-		$$
-		The intuition here is that the word embedding has learnt to categorise gender consistently, and it's clear to see that the model has likely learnt a gender representation.
- 		\par  		
-		 Translation from English into French sentences is achieved by understanding these representation's within two recurrent neural networks \cite{Sutskever2014} . The first processes the English, word by word, to produce a representation of it. The second takes the representation of the English sentence and sequentially outputs the translated words.
-
- 		\begin{figure}[H]
-    			\centering																			{{\includegraphics[width=0.6\textwidth]
-    				{img/colah_language.png} 
-    				}}
-    			\caption{English and Chinese word representation plot}%
-    			\label{fig:embeddings}
-		\end{figure}	
-		
-		
-		\par 
-		An interesting discovery made possible by the visualisation of this system, is that the representation taken at the intersection of the two languages was heavily dominated by the first word of the sentence. Spotting this would have been near impossible in other non-visual depictions of the data, and it allows certain theories to be drawn about what the network is actually doing in order to process the information correctly. \cite{Olah2014} notes a number of possible deductions from this information.
-		
-		\subsubsection{Hidden Layer Representations}
- 		
- 		 \begin{figure}[H]
-    			\centering																			{{\includegraphics[width=0.6\textwidth]
-    				{img/colah_mnist.png} 
-    				}}
-    			\caption{Force Directed Graph at input and hidden representation}%
-    			\label{fig:fdg}
-		\end{figure}	
-		
-		Another level of insights provided by representations can be attained by comparing representation's across layers. One interesting visual example of a representation, produced by \cite{Olah2014}, is of the MNIST dataset. A nearest neighbour, force-directed graph that is used to show classes which are fairly tangled and chaotic at the input, where it's easy to assume little classification. However by the next layer because the model has already been trained to distinguish digit classes, the hidden layer has learned to transform the data into an alternate representation that is easier to classify, and easier for a researcher to discern if the classification is performing as expected.				
-		\par 
+    			\caption{UML, ER, Scheme diagram hybrid}%
+	\end{figure}	
 	
-		\subsubsection{Transfer Function Representations}
-		In addition to examining the representations at any given layer, it's possible to compare representations provided by different transfer functions. 
-		\par 
-		Each Neuron warps the space it interacts in rather differently. Using Principle Component Analysis as a dimensionality reduction technique, it becomes easy to understand this deformation of input space.
-		\par 
-		With a five unit sigmoid layer projected into three dimensions using PCA, its clear to see that the representation is very much like a cube. This intuitively makes sense, as sigmoid units tend to give values close to 0 or 1, and less frequently produce values in the middle. If the transformation is performed across the five dimensions with the sigmoid layer, then there ends up being a concentration at the corners and edges - thus creating a high-dimensional cube. 
-		\par 
-		
-		\begin{figure}[H]
-    			\centering												{{\includegraphics[width=0.4\textwidth]
-    				{img/colah_relu.png} 
-    			}}%
-    			\qquad
-    			{{\includegraphics[width=0.4\textwidth]
-    				{img/colah_sigmoid.png} 
-    			}}%
-    			\caption{ReLU neuron versus Sigmoid neuron representation}%
-		\end{figure}
- 		
-		If PCA is applied to a five unit ReLU layer, then a different geometric fingerprint is seen. The ReLU has a high probability of having zero activations - resulting in lots of points tending to the origin, or along the axes. Again in high-dimensions, this takes a physical representation and looks like a series of spikes originating from zero. 		
-		\par 
-		The interesting point to note is that very quickly it becomes possible to come to intuitive conclusions about how our data is being manipulated by the different functions. Far clearer certainly than if we were to simply look at the weights, activations and biases on a spreadsheet. 
-		\par 
-		
-		\subsubsection{Isometries in Representations}
-		
-		\begin{figure}[H]
-    			\centering												{{\includegraphics[width=0.25\textwidth]
-    				{img/colah_flip01.png} 
-    			}}%
-    			\qquad
-    			{{\includegraphics[width=0.25\textwidth]
-    				{img/colah_flip.png} 
-    			}}%
-    			\caption{A flipped representation}%
-		\end{figure}
-		
-		Visualised representations effectively form a geometric footprint of the transformed data. This is not the same every time we train the network and can change depending on small variables. This makes it likely that we could end up with several minor variations of the same dataset.
-		\par 
-		Sometimes a different representation means something significant, like learning a new characteristic of the data, and at other times the new representation is simply an insignificant transformation in isometries, like rotation or flipping - where nothing new is really learnt. It's important to reduce the chances of seeing these isometries as they can confuse what experts learn from the data.
-		\par 
-		What is required is a form of representation that encodes only meaningful differences. In dimensionality reductions, such as PCA or t-SNE, we are primarily concerned with distance between points as this holds the important notion of similarity and difference.
-		\par 
-		\cite{Olah2014} states that for any representation $ X $ there is an associated metric function, $ d_{x} $, which gives us the distance between pairs of points within that representation. For another representation $ Y $, $ d_{x} = d_{y} $ if and only if $ X $ is isometric to $ Y $. This is exactly the form with removal of isometries required.
-		\par 
-		The issue with $ d_{x} $ however is that it is a function on a very high-dimensional continuous space, caused by the need to consider the distance between functions as infinite dimension vectors. 
-		$$
-		D_X = \left[\begin{array}{cccc} 
-		  d_X(x_0, x_0) & d_X(x_1, x_0) & d_X(x_2, x_0) & ... \\
-		  d_X(x_0, x_1) & d_X(x_1, x_1) & d_X(x_2, x_1) & ... \\
-		  d_X(x_0, x_2) & d_X(x_1, x_2) & d_X(x_2, x_2) & ... \\
-		  ... & ... & ... & ... \\ 
-		\end{array} \right]
-		$$
-		Here we require another application of dimensionality reduction - again reapplying t-SNE, PCA or some other technique. \textit{meta-SNE} is a recently introduced variation of t-SNE by \cite{Olah2014} that performs the above flattening of distance matrices. This meta-SNE visualisation of distance shows how much representations disagree about which points are similar and which are different - allowing us to have quick overview of when a network has learnt an entirely new representation or not. This moves the position up from looking at representations, to the space of representations.
-		\par 
-		
-		\begin{figure}[H]
-			\centering
-						
-    			\includegraphics[width=0.40\textwidth]{img/colah_meta_sne.png}
-\caption{Meta-SNE representation $\rightarrow$ t-SNE representation $\rightarrow$ MNIST digit}
- 		\end{figure}
- 		
-		It is possible here that this space could be used to see how current model representations compare to other `landmark' representations from past experiments. If the models first layer representation is in the same place as a really successful model, then that's likely to be positive. If however it's tending towards a cluster that had some specific poor quality, the researcher would know to adjust for this too. This provides us with some qualitative feedback during the training of the neural network. 
-		
 
-		
-		
-\subsubsection{New Visual Encodings for Deep 	Learning (REJIG TO MAKE MORE ME!!!)}
- 			
+	
+\subsection{Evaluation}
+These two final screenshots demonstrate the control cluster side by side with the display cluster. The control has been created using the PCA/Varimax combinations such that points next to one another are similar or may be rotations of one another. The display shows the tSNE data once it has been transformed along the principle components and orthogonalised with Varimax. 
+\par 
+The homepage is a simple place where the researcher can select a model from the database, which will then be passed up to the client side application and the researcher can browse by either:
+\begin{itemize}
+	\item Epoch \& Layer tSNE
+	\item PCA \& Varimax tSNE
+	\item tSNE tSNE (meta-SNE)
+\end{itemize}
+
 	\begin{figure}[H]
     			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/hinton_embedded_tsne.png} 
+    			\subfloat[Final PCA exploration]							{{\includegraphics[width=0.45\textwidth]
+    				{img/screenshot_home.png} 
     			}}%
-    			\caption{MNIST embedded digit plot}%
+    			 \qquad
+    			\subfloat[Final Homepage]									{{\includegraphics[width=0.45\textwidth]
+    				{img/screenshot_homepage.png} 
+    			}}%
+    			\caption{}%
+    			\label{fig:pca_varimax}
+	\end{figure}
+
+	\subsubsection{Neural Network Perspective}
+	The response to this final iteration, that effectively ties together the lessons from the previous three, was overwhelmingly positive.
+	\par 
+	The tool enabled users to pick up many interesting details, but primarily was the ability to spot patterns ememrgin within datasets when using all of the elements together: the epoch-layer control as well as the PCA-varimax control to observe, zoom in on to get a more local pattern view, or zoom out to get a more global view of the patterns emerging, and of course transitioning from one plot to another while following particular points - observing anomalies and rotational patterns.
+	\par 
+	Perhaps most interesting is the perculiar shapes that the data tends to be morphed into, however this will be discussed in the conclusion.
+	
+	\subsubsection{Visualisation Response}
+	From a visualisation perspective this final tool really fulfills several of Edward Tufte's visualisation principles, as well as providing a useful tool for \textit{Active Vision Problemsolving} through the use of the sense of sight. 
+	\par 
+	Assessing the tool against Tufte's principles:
+	\begin{itemize}
+		\item Principle 1, \textit{show only as much information as required}, is fulfilled comprehensively through the use of the tSNE algorithm which compresses the multi-dimensional data down into the 2D plane.
+		\item Principle 2, \textit{include visual difference only when required}, is fulfilled by the PCA-varimax algorithms such that visual differences are not simply 'shown when required', but are intelligently organised to enable comparisons to occur with more ease.
+		\item Principle 3, \textit{use visual encodings for quantitative values}, in first transforming the multidimensional data down into two dimensions and then using the scatterplot diagram, which even without axis uses the visual encoding of \textit{spatial separation} to encode the differences in quantitative values.
+		\item Principle 4, \textit{difference in visual properties should correspond to actual differences in the data}, is explicitly implemented with the tSNE algorithm which optimises a cost function that aims to preserve the qualities in the data when mapping down to a number of dimensions that can be easily visualised. 
+		\item Principle 5, \textit{do not connect values that are discrete}, is realised simply by not making any connections at all, and allowing the user to spot these connections of their own accord.
+		\item Principle 6, \textit{visually highlight the most important part of your message}, occurs at two levels: firstly when the user scrolls over a point in the control box, the display box changes to highlight that item, and secondly as the user scrolls over the points in the display box, either the categorisation value is displayed as a string, or the input image is displayed as a HTML5 canvas rendering. 
+		\item Principle 7, \textit{augment short term memory through visual patterns}, has been achieved by using transitions from one tSNE plot to another, thus supplementing the users short term memory of the previous plot by providing a trajectory for each point which can be followed through the transition.
+		\item Principle 8, \textit{Encourage the eye to compare different pieces of data}, is fulfilled by providing the control box which the user can scroll over to rapidly change the tSNE plot on display, thus being able to successfully compare the data.
+		\item Principle 9, \textit{Reveal the data at several levels of detail}, is enacted by simply enabling the user to zoom in to focus on the local structure within the tSNE plot, or to zoom out and focus on the global structure.
+		\item Principle 10, \textit{Don't distort the data}, has been fulfilled by using the d3.js linear scaling function that allows us to map data points directly to the visualisation with one constant scale without undergoing distortion. However it is clear that the data has undergone significant distortion by each of the algorithms that enable the visualsiation to achieve earlier principles.
+	\end{itemize}
+	
+	\subsubsection{Implementation Response}
+	The implementation of the final tool clearly separates the concerns of the client side and the server side. It partitions key elements in classes and folders within the file-structure, and maintains a clean database structure.
+	
+\clearpage 
+
+\section{Conclusions}
+	
+	\subsection{Observations}
+	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.6\textwidth]
+    				{img/conc_X24_H7_L1-3-5_E30.png} 
+    			}}%
+    			\caption{Exp.24, Hidden Units.7, Layers.3-5, Epoch.30}%
     		\label{fig:mnistHinton}
 	\end{figure}
- 		
- 	\begin{figure}[H]
+
+	\begin{figure}[H]
     			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/colah_tsne_distribution.png} 
+			{{\includegraphics[width=0.6\textwidth]
+    				{img/conc_X35_H512_L3_E2-40.png} 
     			}}%
-    			\caption{Ones visualised by tSNE}%
-    		\label{fig:wiki}
-	\end{figure}	  
- 		
-		 		
- 	\begin{figure}[H]
+    			\caption{Exp.35, Hidden Units.512, Layer.3, Epochs.2-40}%
+    		\label{fig:mnistHinton}
+	\end{figure}
+
+	\begin{figure}[H]
     			\centering	
-			{{\includegraphics[width=0.3\textwidth]
-    				{img/colah_nearest_neighbour.png} 
+			{{\includegraphics[width=0.6\textwidth]
+    				{img/conc_X35_H512_L5_E2-40.png} 
     			}}%
-    			\caption{Three Nearest Neighbour Graph}%
-    		\label{fig:3nn}
-	\end{figure}	 	
- 		
+    			\caption{Exp.35, Hidden Units.512, Layer.5, Epochs.2-40}%
+    		\label{fig:mnistHinton}
+	\end{figure}
+	
+	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.6\textwidth]
+    				{img/conc_X46_H16_L1-3_E6-16.png} 
+    			}}%
+    			\caption{Exp.46, Hidden Units.16, Layers.1-3, Epochs.6-16}%
+    		\label{fig:mnistHinton}
+	\end{figure}
+
+	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.6\textwidth]
+    				{img/conc_X49_H64_L1_E14-26.png} 
+    			}}%
+    			\caption{Exp.49, Hidden Units.64, Layers.1, Epochs.14}%
+    		\label{fig:mnistHinton}
+	\end{figure}
+
+	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.6\textwidth]
+    				{img/conc_X49_H64_L5_E16-28.png} 
+    			}}%
+    			\caption{Exp.49, Hidden Units.64, Layers.5, Epochs.16-28}%
+    		\label{fig:mnistHinton}
+	\end{figure}
+
+	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.6\textwidth]
+    				{img/conc_X54_H649_L5_E18.png} 
+    			}}%
+    			\caption{Exp.54, Hidden Units.649, Layers.5, Epochs.18}%
+    		\label{fig:mnistHinton}
+	\end{figure}
+	
+	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.6\textwidth]
+    				{img/conc-X42_H2_L3-5_E2.png} 
+    			}}%
+    			\caption{Exp.42, Hidden Units.2, Layers.3-5, Epoch.2}%
+    		\label{fig:mnistHinton}
+	\end{figure}
+	
+	\begin{figure}[H]
+    			\centering	
+			{{\includegraphics[width=0.6\textwidth]
+    				{img/conc-X42_H2_L3-5_E30.png} 
+    			}}%
+    			\caption{Exp.42, Hidden Units.2, Layers.3-5, Epoch.30}%
+    		\label{fig:mnistHinton}
+	\end{figure}
+
+\subsection{New Visual Encodings for Deep Learning (REJIG TO MAKE MORE ME!!!)}
 
 		While there are a number of established best practices for visualising low dimensional data as explored above, many of these simply don't work when it comes to exploring neural networks - which are typically multi-dimensional. Labelling axes quickly becomes ridiculous when multiplied by 10,000 variables. Giving units when comparing very different types of data under one visual representation becomes equality redundant.
 		\par	 
@@ -1746,9 +1858,7 @@ Neural Networks are famous for ability to comprehend complex datasets such as vi
  		
 A compelling argument is made by  for interaction when exploring scientific data visually. He shows that there is often a situation where the data is so dense, where there is simply too much to explore in an effective way, that interaction in the only solution; instead hovering over the points and being provided with a tool-tip that demonstrates the points value. Interactive filtering can help, allowing the user to choose some number of easy to visualise classes. 
 
-
-
-		\subsubsection{Categorising and Understanding Academic Visualisations}
+		\subsection{Categorising and Understanding Academic Visualisations}
 		One area within the field of Deep Learning that uses vast amounts of visual material, if aggregated, is across the academic body of research. 
 		\par 
 		Graphs, charts, 3D planar surfaces, diagrams, morphed images, and more, all contribute a significant amount to helping readers understand, and writers explain new concepts and cutting edge research. It seems then, to be a good place to start examining if one wants to understand the types of things the community chooses to remove from mathematical syntax, and place in a visual form.
@@ -1762,18 +1872,46 @@ A compelling argument is made by  for interaction when exploring scientific data
 			Similar to above, this will provide an understanding of the features and scales that the community most values. For example, error rate as a percentage features heavily against time - but also occasionally features against other variables. Again, this provides a useful reference point as to what the community of researchers is most interested in, and allows this project to progress without needed to be an expert in the field.
 		\end{itemize}
 		\textit{Please see appendix A}
-		
-		\subsubsection{Collecting Iterative Visualisations: Sketches}
-		The process of acquiring this information has only just begun, however it will provide an invaluable insight into forms of visualisation that are not confined to those that have been iterated upon and refined for the purpose of publication. 
-		\par 
-		The data collected in this research are sketches, quick diagrams and `hacky' visualisations made by software - ideally accompanied by some description of what the researcher was trying to explain, or understand.
-		\par 
-		With this information, it will become far clearer what is required in terms of content for visualisations made for understanding and exploration as opposed to visualisations made for explanation. Ultimately this information should allow visualisation to be targeted towards helping researchers make key decisions. 
-	\subsection{Understanding Literature}
-	Thus far; a number of papers have been read, a number of tutorials undertaken, and a number of online lectures watched - both in the discipline of visualisation and in working with deep neural networks.
-	\subsection{Clarifying Goals}
-	The goals set out when proposing this project appeared to be quite clear. However, as with any project, the more understanding you have of a topic - the more you realise you didn't understand before. This has been made incredibly clear, and even early research into what would be valuable for those implementing deep neural networks has changed the course of how this project will work. Hopefully it is more on the right tracks now.
 
+\clearpage
+
+\section{Future Work}`
+	\subsection{Expanding the Automatic Neural Network}		
+	\subsection{Widening the Visualisation Toolbox}
+	
+	Going back through some of the other techniques covered in the introduction:
+	
+	\begin{itemize}
+		\item Activation renderings 
+		\item weight matrices
+		\item mapping the actual structure of the neural network for more complex networks (explain using the log algorithm to ensure that larger networks could be show accurately yet also see the connections)
+		\item googles inceptionism
+	\end{itemize}		
+	
+	\begin{figure}[H]
+    			\centering												{{\includegraphics[width=7cm]
+    				{img/SKE-iter3-A.png} 
+    			}}%
+    			\caption{Wireframe Design}%
+	\end{figure}	
+	
+	\begin{figure}[H]
+    			\centering												{{\includegraphics[width=7cm]
+    				{img/SKE-iter3.png} 
+    			}}%
+    			\caption{Wireframe Design}%
+	\end{figure}	
+	
+	\subsection{Using different Visualisation UI techniques}	
+
+	Make the project more immersive - by placing the visualisation in 3D.
+	Perhaps even placing them into a VR environment where researchers could explore the data in a more hands on manner.
+		
+	
+	\subsection{Adapting an API for other Neural Network Packages}
+	
+	Creating a way to interface beyond Theano Python modules - 
+	
 \clearpage
 
 \bibliography{background_bibliography}
