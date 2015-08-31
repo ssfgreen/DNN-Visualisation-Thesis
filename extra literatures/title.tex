@@ -1,0 +1,100 @@
+\documentclass[a4paper,11pt,titlepage]{article}
+
+
+% This first part of the file is called the PREAMBLE. It includes
+% customizations and command definitions. The preamble is everything
+
+% this should stop subsubsections showing up
+%\setcounter{tocdepth}{4}
+\setcounter{tocdepth}{2}
+
+\usepackage[margin=2.5cm]{geometry}  % set the margins to 2cm on all sides
+\usepackage{graphicx}              % to include figures
+\usepackage{amsmath}               % great math stuff
+\usepackage{amsfonts}              % for blackboard bold, etc
+\usepackage{amsthm}                % better theorem environments
+\usepackage{wrapfig}					%allows wraping of figures in the text
+\usepackage{cite}
+\usepackage{bm}
+\usepackage{natbib}
+\usepackage{har2nat}
+\usepackage{float}
+%\usepackage{hyperref}
+
+% various theorems, numbered by section
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+
+\DeclareMathOperator{\id}{id}
+
+\newcommand{\bd}[1]{\mathbf{#1}}  % for bolding symbols
+\newcommand{\RR}{\mathbb{R}}      % for Real numbers
+\newcommand{\ZZ}{\mathbb{Z}}      % for Integers
+\newcommand{\col}[1]{\left[\begin{matrix} #1 \end{matrix} \right]}
+\newcommand{\comb}[2]{\binom{#1^2 + #2^2}{#1+#2}}
+
+\usepackage[nodayofweek]{datetime}
+\usepackage{graphicx,subfig,listings}
+\longdate
+
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{\fancyplain{}{Visualisation for Information -\ Sam Green}}
+\rhead{\fancyplain{}{\today}}
+\cfoot{\fancyplain{}{\thepage}}
+
+\usepackage{setspace}
+
+\usepackage{url}
+
+%\title{Visualising 
+%		\\\ Deep Neural Networks
+%		}
+%\author{
+% \Large{--- Sam Green ---}
+% \\
+% \\
+% \small{Supervisors: Dr William Knottenbelt and Mr %Daniel `Jack' Kelly}
+% Submitted in partial fulfilment of the requirements %for the MSc Degree in Computing Science
+%}
+
+%\thanks{Submitted in partial fulfilment of the %requirements for the MSc Degree in Computing Science
+%\\\
+%       Imperial College London}
+
+
+
+\begin{document}
+\onehalfspacing
+
+\begin{titlepage}
+	\centering
+	\includegraphics[width=0.15\textwidth]{example-image-1x1}\par\vspace{1cm}
+	{\scshape\LARGE Columbidae University \par}
+	\vspace{1cm}
+	{\scshape\Large Final year project\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Pigeons love doves\par}
+	\vspace{2cm}
+	{\Large\itshape John Birdwatch\par}
+	\vfill
+	supervised by\par
+	Dr.~Mark \textsc{Brown}
+
+	\vfill
+
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
+
+% \maketitle
+
+\clearpage
+\clearpage
+
+\end{document}
