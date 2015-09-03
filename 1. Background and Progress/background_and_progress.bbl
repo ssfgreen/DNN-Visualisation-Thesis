@@ -29,12 +29,6 @@ Becker, B., Kohavi, R. \harvardand\ Sommerfield, D.  \harvardyearleft
 Belkin, M. \harvardand\ Niyogi, P.  \harvardyearleft 2002\harvardyearright ,
   `{Laplacian Eigenmaps and spectral techniques for embedding and clustering}'.
 
-\harvarditem[Bengio et~al.]{Bengio, Ducharme, Vincent \harvardand\
-  Janvin}{2003}{Bengio2003}
-Bengio, Y., Ducharme, R., Vincent, P. \harvardand\ Janvin, C.  \harvardyearleft
-  2003\harvardyearright , `{A Neural Probabilistic Language Model}', {\em The
-  Journal of Machine Learning Research} {\bf 3},~1137--1155.
-
 \harvarditem[Bergstra et~al.]{Bergstra, Yamins \harvardand\
   Cox}{2013}{Bergstra2013}
 Bergstra, J., Yamins, D. \harvardand\ Cox, D.  \harvardyearleft
@@ -44,17 +38,22 @@ Bergstra, J., Yamins, D. \harvardand\ Cox, D.  \harvardyearleft
   pp.~115--123.
 \newline\harvardurl{http://jmlr.org/proceedings/papers/v28/bergstra13.html}
 
+\harvarditem[Bernd et~al.]{Bernd, Kleutges \harvardand\ Kroll}{1999}{Bernd1999}
+Bernd, T., Kleutges, M. \harvardand\ Kroll, A.  \harvardyearleft
+  1999\harvardyearright , `{Nonlinear Black Box Modelling – Fuzzy Networks
+  versus Neural Networks}', {\em Neural Computing \& Applications} {\bf Volume
+  8,}.
+
+\harvarditem{Blank}{2013}{Blank2013}
+Blank, S.  \harvardyearleft 2013\harvardyearright , `{Why the lean-startup
+  changes everything}', {\em Harvard Business Review} .
+\newline\harvardurl{https://hbr.org/2013/05/why-the-lean-start-up-changes-everything}
+
 \harvarditem[Bostock et~al.]{Bostock, Heer \harvardand\
   Ogievetsky}{2011}{Bostock2011a}
 Bostock, M., Heer, J. \harvardand\ Ogievetsky, V.  \harvardyearleft
   2011\harvardyearright , `{D3.js - Data-Driven Documents}'.
 \newline\harvardurl{http://d3js.org/}
-
-\harvarditem[Bruckner et~al.]{Bruckner, Rosen \harvardand\
-  Sparks}{2013}{Bruckner2013}
-Bruckner, D., Rosen, J. \harvardand\ Sparks, E.~R.  \harvardyearleft
-  2013\harvardyearright , `{DeepViz : Visualizing Convolutional Neural Networks
-  for Image Classification}'.
 
 \harvarditem{Bruna \harvardand\ Polytechnique}{2012}{Bruna2012}
 Bruna, J. \harvardand\ Polytechnique, E.  \harvardyearleft
@@ -74,25 +73,16 @@ Caragea, D., Cook, D. \harvardand\ Honavar, V.  \harvardyearleft
   Pattern Classifiers Using Projection-Based Tour Methods}', {\em Proceedings
   of the KDD Conference} pp.~251--256.
 
-\harvarditem[Carlsson et~al.]{Carlsson, Ishkhanov, {De Silva} \harvardand\
-  Zomorodian}{2008}{Carlsson2008}
-Carlsson, G., Ishkhanov, T., {De Silva}, V. \harvardand\ Zomorodian, A.
-  \harvardyearleft 2008\harvardyearright , `{On the local behavior of spaces of
-  natural images}', {\em International Journal of Computer Vision} {\bf
-  76}(1),~1--12.
+\harvarditem[Card et~al.]{Card, Mackinlay \harvardand\
+  Shneiderman}{1999}{card1999}
+Card, S.~K., Mackinlay, J. \harvardand\ Shneiderman, B.  \harvardyearleft
+  1999\harvardyearright , `{Information Visualization}', {\em Readings in
+  Information Visualization: Using Vision to Think} pp.~1--34.
 
 \harvarditem{Chernoff}{1973}{Chernoff1973}
 Chernoff, H.  \harvardyearleft 1973\harvardyearright , `{The use of faces to
   represent points in k-dimensional space graphically.}', {\em Journal of the
   American Statistical Association} {\bf 68}(342),~361--368.
-
-\harvarditem[Cho et~al.]{Cho, van Merrienboer, Gulcehre, Bougares, Schwenk
-  \harvardand\ Bengio}{2014}{Cho2014}
-Cho, K., van Merrienboer, B., Gulcehre, C., Bougares, F., Schwenk, H.
-  \harvardand\ Bengio, Y.  \harvardyearleft 2014\harvardyearright , `{Learning
-  Phrase Representations using RNN Encoder-Decoder for Statistical Machine
-  Translation}', {\em arXiv} .
-\newline\harvardurl{http://arxiv.org/abs/1406.1078}
 
 \harvarditem{Choi \harvardand\ Horowitz}{2005}{Choi2005}
 Choi, J. C.~J. \harvardand\ Horowitz, R.  \harvardyearleft
@@ -132,19 +122,6 @@ DeFanti, T.~a., Brown, M.~D. \harvardand\ McCormick, B.~H.  \harvardyearleft
 Demartines, P. \harvardand\ Herault, J.  \harvardyearleft 1995\harvardyearright
   , `{CCA : Curvilinear Component Analysis " 1 Introduction 2 Algorithm}', {\em
   Kybernetik} pp.~1--4.
-
-\harvarditem{Dholakiya \harvardand\ Kiran}{2015}{Dholakiya2015}
-Dholakiya, J.~H. \harvardand\ Kiran, R.  \harvardyearleft 2015\harvardyearright
-  , `{Expresso : A user-friendly GUI for designing , training and using
-  Convolutional Neural Networks}'.
-
-\harvarditem[Donahue et~al.]{Donahue, Jia, Vinyals, Hoffman, Zhang, Tzeng
-  \harvardand\ Darrell}{2013}{Donahue2013}
-Donahue, J., Jia, Y., Vinyals, O., Hoffman, J., Zhang, N., Tzeng, E.
-  \harvardand\ Darrell, T.  \harvardyearleft 2013\harvardyearright , `{DeCAF: A
-  Deep Convolutional Activation Feature for Generic Visual Recognition}', {\em
-  International Conference on Machine Learning} pp.~647--655.
-\newline\harvardurl{http://arxiv.org/abs/1310.1531}
 
 \harvarditem[Duchi et~al.]{Duchi, Hazan \harvardand\ Singer}{2011}{Duchi2011}
 Duchi, J., Hazan, E. \harvardand\ Singer, Y.  \harvardyearleft
@@ -197,10 +174,6 @@ Hotelling, H.  \harvardyearleft 1933\harvardyearright , `{Analysis of a complex
   of statistical variables into principal components}', {\em J. Educ. Psych.}
   {\bf 24}.
 
-\harvarditem{Iliinsky}{2013}{Iliinsky2013}
-Iliinsky, B.~N.  \harvardyearleft 2013\harvardyearright , `{Choosing visual
-  properties for successful visualizations}',  p.~12.
-
 \harvarditem[Jarrett et~al.]{Jarrett, Kavukcuoglu, Ranzato \harvardand\
   LeCun}{2009}{Jarrett2009}
 Jarrett, K., Kavukcuoglu, K., Ranzato, M. \harvardand\ LeCun, Y.
@@ -238,6 +211,16 @@ LeCun, Y., Boser, B., Denker, J.~S., Henderson, D., Howard, R.~E., Hubbard, W.
   \harvardand\ Jackel, L.~D.  \harvardyearleft 1989\harvardyearright ,
   `{Backpropagation Applied to Handwritten Zip Code Recognition}'.
 
+\harvarditem[LeCun et~al.]{LeCun, Bottou, Bengio \harvardand\
+  Haffner}{1998}{LeCun1998}
+LeCun, Y., Bottou, L., Bengio, Y. \harvardand\ Haffner, P.  \harvardyearleft
+  1998\harvardyearright , `{Gradient-based learning applied to document
+  recognition}', {\em Proceedings of the IEEE} {\bf 86}(11),~2278--2323.
+
+\harvarditem{Lin}{2010}{Lin2010}
+Lin, Z.  \harvardyearleft 2010\harvardyearright , `{PCA vs. Varimax rotation}',
+   (table 3),~1--5.
+
 \harvarditem{Maaten \harvardand\ Hinton}{2008}{Maaten2008}
 Maaten, L. V.~D. \harvardand\ Hinton, G.  \harvardyearleft
   2008\harvardyearright , `{Visualizing Data using t-SNE}', {\em Journal of
@@ -249,16 +232,22 @@ McCormick, B.~H., DeFanti, T.~a. \harvardand\ Brown, M.~D.  \harvardyearleft
   1987\harvardyearright , `{Visualization in Scientific Computing}'.
 \newline\harvardurl{http://www.cogsci.ucsd.edu/~ajyu/Teaching/Cogs202\_sp13/Readings/hinton86.pdf}
 
-\harvarditem{Meihoefer}{1973}{Meihoefer1973}
-Meihoefer, H.-J.  \harvardyearleft 1973\harvardyearright , `{the Visual
-  Perception of the Circle in Thematic Maps/Experimental Results}', {\em
-  Cartographica: The International Journal for Geographic Information and
-  Geovisualization} {\bf 10}(1),~63--84.
+\harvarditem[Mordvintsev et~al.]{Mordvintsev, Olah \harvardand\
+  Tyka}{2015}{Mordvintsev2015}
+Mordvintsev, A., Olah, C. \harvardand\ Tyka, M.  \harvardyearleft
+  2015\harvardyearright , `{Inceptionism - going deeper into neural networks}',
+  {\em Google Research} .
+\newline\harvardurl{http://googleresearch.blogspot.co.uk/2015/06/inceptionism-going-deeper-into-neural.html}
 
 \harvarditem{Munro}{1992}{Munro1992}
 Munro, P.  \harvardyearleft 1992\harvardyearright , `{Visualizations of 2-D
   hidden unit space}', {\em [Proceedings 1992] IJCNN International Joint
   Conference on Neural Networks} {\bf 3},~468--473.
+
+\harvarditem{Nielsen}{n.d.}{Nielsen}
+Nielsen, M.  \harvardyearleft n.d.\harvardyearright , `{Why are deep neural
+  networks hard to train?}'.
+\newline\harvardurl{http://neuralnetworksanddeeplearning.com/chap5.html}
 
 \harvarditem[Norouzi et~al.]{Norouzi, Mikolov, Bengio, Singer \harvardand\
   Mar}{2014}{Norouzi2014}
@@ -270,18 +259,8 @@ Norouzi, M., Mikolov, T., Bengio, S., Singer, Y. \harvardand\ Mar, L.~G.
 Olah, C.  \harvardyearleft 2014{\em a}\harvardyearright , `{Deep Learning , NLP
   , and Representations}',  pp.~1--9.
 
-\harvarditem{Olah}{2014{\em b}}{Olah2014a}
-Olah, C.  \harvardyearleft 2014{\em b}\harvardyearright , `{Neural Networks,
-  Manifolds, and Topology}'.
-\newline\harvardurl{http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/}
-
-\harvarditem{Olah}{2014{\em c}}{Olah2014b}
-Olah, C.  \harvardyearleft 2014{\em c}\harvardyearright , `{Visualizing MNIST:
-  An Exploration of Dimensionality Reduction}'.
-\newline\harvardurl{http://colah.github.io/posts/2014-10-Visualizing-MNIST/}
-
-\harvarditem{Olah}{2014{\em d}}{Olah2014}
-Olah, C.  \harvardyearleft 2014{\em d}\harvardyearright , `{Visualizing
+\harvarditem{Olah}{2014{\em b}}{Olah2014}
+Olah, C.  \harvardyearleft 2014{\em b}\harvardyearright , `{Visualizing
   Representations: Deep Learning and Human Beings}'.
 \newline\harvardurl{http://colah.github.io/posts/2015-01-Visualizing-Representations/\#fn10}
 
@@ -323,14 +302,6 @@ Shoresh, N. \harvardand\ Wong, B.  \harvardyearleft 2011\harvardyearright ,
   `{Points of view: Data exploration}', {\em Nature Methods} {\bf 9}(1),~5--5.
 \newline\harvardurl{http://dx.doi.org/10.1038/nmeth.1829}
 
-\harvarditem[Simonyan et~al.]{Simonyan, Vedaldi \harvardand\
-  Zisserman}{2013}{Simonyan2013}
-Simonyan, K., Vedaldi, A. \harvardand\ Zisserman, A.  \harvardyearleft
-  2013\harvardyearright , `{Deep Inside Convolutional Networks: Visualising
-  Image Classification Models and Saliency Maps}', {\em arXiv preprint
-  arXiv:1312.6034} pp.~1--8.
-\newline\harvardurl{http://arxiv.org/abs/1312.6034}
-
 \harvarditem[Song et~al.]{Song, Smola, Borgwardt \harvardand\
   Gretton}{2007}{Song2007}
 Song, L., Smola, A., Borgwardt, K. \harvardand\ Gretton, A.  \harvardyearleft
@@ -348,14 +319,6 @@ Streeter, M., Ward, M. \harvardand\ Alvarez, S.~a.  \harvardyearleft
 Sutskever, I., Vinyals, O. \harvardand\ Le, Q.~V.  \harvardyearleft
   2014\harvardyearright , `{Sequence to Sequence Learning with Neural
   Networks}', {\em Nips 2014} pp.~1--9.
-
-\harvarditem[Talbot et~al.]{Talbot, Lee, Kapoor \harvardand\
-  Tan}{2009}{Talbot2009}
-Talbot, J., Lee, B., Kapoor, A. \harvardand\ Tan, D.~S.  \harvardyearleft
-  2009\harvardyearright , `{EnsembleMatrix: interactive visualization to
-  support machine learning with multiple classifiers}', {\em Learning}
-  pp.~1283--1292.
-\newline\harvardurl{http://portal.acm.org/citation.cfm?id=1518895}
 
 \harvarditem[Tenenbaum et~al.]{Tenenbaum, Silva \harvardand\
   Langford}{2000}{Tenenbaum2000}
@@ -381,6 +344,11 @@ Tzeng, F.-Y. \harvardand\ Ma, K.-L.  \harvardyearleft 2005\harvardyearright ,
   {\em VIS 05. IEEE Visualization, 2005.} (x),~383--390.
 \newline\harvardurl{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=1532820}
 
+\harvarditem{van~der Maaten}{2013}{VanderMaaten2013}
+van~der Maaten, L.  \harvardyearleft 2013\harvardyearright ,
+  `{Barnes-Hut-SNE}',  pp.~1--11.
+\newline\harvardurl{http://arxiv.org/abs/1301.3342}
+
 \harvarditem[van~der Maaten et~al.]{van~der Maaten, Postma \harvardand\ van~den
   Herik}{2009}{VanderMaaten2009}
 van~der Maaten, L., Postma, E. \harvardand\ van~den Herik, J.  \harvardyearleft
@@ -393,14 +361,6 @@ Vondrick, C., Khosla, A., Malisiewicz, T. \harvardand\ Torralba, A.
   \harvardyearleft 2013\harvardyearright , `{HOGgles: Visualizing object
   detection features}', {\em Proceedings of the IEEE International Conference
   on Computer Vision} pp.~1--8.
-
-\harvarditem[Wang et~al.]{Wang, Perez-Riverol, Hermjakob \harvardand\
-  Vizca\'{\i}no}{2015}{Wang2015}
-Wang, R., Perez-Riverol, Y., Hermjakob, H. \harvardand\ Vizca\'{\i}no, J.~A.
-  \harvardyearleft 2015\harvardyearright , `{Open source libraries and
-  frameworks for biological data visualisation: A guide for developers}', {\em
-  Proteomics} {\bf 15}(8),~1356--1374.
-\newline\harvardurl{http://doi.wiley.com/10.1002/pmic.201400377}
 
 \harvarditem{Ware}{2010}{Ware2010}
 Ware, C.  \harvardyearleft 2010\harvardyearright , {\em {Visual Thinking for
