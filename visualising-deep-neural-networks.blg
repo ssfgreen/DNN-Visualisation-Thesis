@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: visualising-deep-neural-networks.aux
+The style file: agsm.bst
+Database file #1: background_bibliography.bib
+Warning--I didn't find a database entry for "?"
+Warning--I didn't find a database entry for "karpathy"
+Warning--there's a number but no volume in Erhan2009
+Warning--there's a number but no volume in Lin2010
+Warning--there's a number but no volume in Patel2008
+Warning--there's a number but no volume in Tzeng2005
+Warning--there's a number but no volume in Weinberger2004
+You've used 69 entries,
+            2909 wiz_defined-function locations,
+            1091 strings with 16978 characters,
+and the built_in function-call counts, 292855 in all, are:
+= -- 47478
+> -- 4168
+< -- 0
++ -- 22646
+- -- 1267
+* -- 25375
+:= -- 58708
+add.period$ -- 69
+call.type$ -- 69
+change.case$ -- 965
+chr.to.int$ -- 68
+cite$ -- 74
+duplicate$ -- 1171
+empty$ -- 2266
+format.name$ -- 1501
+if$ -- 52625
+int.to.chr$ -- 6
+int.to.str$ -- 0
+missing$ -- 65
+newline$ -- 236
+num.names$ -- 722
+pop$ -- 333
+preamble$ -- 1
+purify$ -- 1035
+quote$ -- 0
+skip$ -- 1048
+stack$ -- 0
+substring$ -- 66997
+swap$ -- 255
+text.length$ -- 966
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 272
+warning$ -- 5
+while$ -- 1554
+width$ -- 0
+write$ -- 910
+(There were 7 warnings)
